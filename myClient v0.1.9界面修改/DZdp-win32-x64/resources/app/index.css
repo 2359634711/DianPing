@@ -1,0 +1,75 @@
+.traceBox ul li {
+	display: flex;
+	flex-direction: row;
+}
+.traceBox ul li div{
+    margin-left: 10px;
+}
+
+.testBox{
+	display: flex;
+	flex-direction: row;
+}
+
+.ck textarea{
+    width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 26px;
+}
+
+textarea{
+    background: none;
+}
+.ck{
+    width: 400px;
+
+}
+.userListBox{
+    min-height: 400px;
+    margin: 10px 30px 60px 30px;
+    overflow: auto;
+    box-shadow: 1px 1px 20px #ccc;
+}
+
+.errMsg textarea{
+    width: 371px;
+    height: 26px;
+    /* font-size: 10px; */
+    overflow: hidden;
+    white-space: nowrap;
+}
+table{
+        white-space: nowrap;
+}
+
+.userSelected{
+    background: #e5e5e5;
+}
+
+#leftNav{
+    position: fixed;
+    height: 100%;
+    width: 150px;
+    background: #2e2e2e;
+}
+
+.rightMain{
+    margin-left: 160px;
+}
+
+.navItem{
+    color: #fff;
+    margin-top: 20px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    text-align: center;
+}
+.navItem:hover{
+    cursor: pointer;
+    background: #3e3e3e;
+}
+.navItemActive{
+    background: #138a28;
+}

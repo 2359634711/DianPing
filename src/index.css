@@ -46,3 +46,30 @@ table{
 .userSelected{
     background: #e5e5e5;
 }
+
+#leftNav{
+    position: fixed;
+    height: 100%;
+    width: 150px;
+    background: #2e2e2e;
+}
+
+.rightMain{
+    margin-left: 160px;
+}
+
+.navItem{
+    color: #fff;
+    margin-top: 20px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    text-align: center;
+}
+.navItem:hover{
+    cursor: pointer;
+    background: #3e3e3e;
+}
+.navItemActive{
+    background: #138a28;
+}

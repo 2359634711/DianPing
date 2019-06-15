@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>v0.1.9 界面修改</title>
     <script type="text/javascript" src="./cookie.js"></script>
     <link rel="stylesheet" type="text/css" href="./bootstrap.css">
     <script type="text/javascript" src="./jquery.js"></script>
@@ -14,14 +14,22 @@
     <link rel="stylesheet" type="text/css" href="./index.css">
     <script src="../../3-25jiaoyou/server/server/index.js"></script>
     <script src="../../3-25jiaoyou/gdApp/index.js"></script>
+    <script src="../../WX_project/server/HttpsService/test.js"></script>
 </head>
 <body>
 <div id="root">
-    v0.1.4 bug修复
-
+    v0.1.9 界面修改
     {{showM ? '' : ''}}
+    <div id="leftNav">
+        <ul>
+            <li :class="item.show ? 'navItem navItemActive' : 'navItem'" v-for="(item, index) in navList" v-key="index" @click="changeNav(index)">
+                {{item.title}}
+            </li>
+        </ul>
+    </div>
+    <div class="rightMain">
     <div class="infosBox">
-        <div class="infoBox">
+        <div class="infoBox" v-if="navList[0].show">
             <div class="boxTitle">讯代理API代理</div>
             <div><input type="checkbox" v-model="proxyFlag"><label>开启代理</label></div>
             <!--<div>设定更新间隔： <input type="text" v-model="ipAllTime"></div>-->
@@ -31,13 +39,13 @@
             <div>当前代理ip:{{proxy ? proxy : '无代理'}}</div><!-- ({{ipNowTime}}s更换)-->
             <div><div class="btnPrimary" @click="changeProxyNow()">测试代理</div></div>
         </div>
-        <div class="infoBox" style="width: 670px;height: 410px;">
+        <div class="infoBox" style="width: 670px;height: 410px;"  v-if="navList[1].show">
             <div class="boxTitle">预定设置</div>
             <input type="checkbox" name="" v-model="orderFlag"><label for="">预定</label>
             <input type="checkbox" name="" v-model="favorFlag"><label for="">收藏</label>
             <div>店铺id: <input type="" name="" v-model="shopId"></div>
             <div>预定总数: <input type="" name="" v-model="orderAllNum"></div>
-            <div>不符合条件重试次数: <input type="text" v-model="orderRepAllNum"></div>
+            <div>不符合预约重试次数: <input type="text" v-model="orderRepAllNum">收藏失败重试次数: <input type="text" v-model="favorRepAllNum"></div>
             <ul>
                 <li style="float: left;box-shadow: 1px 1px 10px #ccc;margin: 10px;" v-for="(item, index) in orderList" key="index">
                     <div>预定日期: <input type="text" v-model="item.orderData">{{index + 1}}</div>
@@ -46,13 +54,13 @@
                 </li>
             </ul>
         </div>
-        <div class="infoBox">
+        <div class="infoBox" v-if="navList[1].show">
             <div class="boxTitle">老师收藏</div>
             <input type="checkbox" name="" v-model="voteFlag"><label for="">老师收藏</label>
             <div>老师Id: <input type="" name="" v-model="voteId"></div>
         </div>
-        <div class="infoBox">
-            <div class="boxTitle">预定设置</div>
+        <div class="infoBox" v-if="navList[1].show">
+            <div class="boxTitle">菜品点赞</div>
             <input type="checkbox" name="" v-model="flowerFlag"><label for="">菜品点赞</label>
             <div>店铺Id: <input type="" name="" v-model="shopId"></div>
             <div>菜品Id: <input type="" name="" v-model="dishId"></div>
@@ -60,7 +68,7 @@
         </div>
 
 
-        <div class="userInfoBox infoBox">
+        <div class="userInfoBox infoBox"  v-if="navList[2].show">
             <div class="boxTitle">飞讯验证码平台</div>
             <div>用户名: <input type="text" v-model="JMuser"></div>
             <div>密码： <input type="password" v-model="JMpsw"></div>
@@ -68,16 +76,17 @@
             <div class="infoSpan">token:{{JMToken ? JMToken : ''}}</div>
         </div>
 
-        <div class="infoBox">
+        <div class="infoBox"  v-if="navList[3].show">
             <div class="boxTitle">账号设置</div>
             <div>输出路径： <input type="text" v-model="outDir"></div>
             <div>导入路径： <input type="text" v-model="inDir"></div>
             <div class="btnPrimary" @click="exportUser(0)">导出全部</div>
+            <div class="btnPrimary" @click="changeAutoSave()">{{autoSave == false ? '定时导出' : '停止导出'}}</div><br>
             <div class="btnPrimary" @click="exportUser(1)">导出预约成功</div>
             <div class="btnPrimary" @click="exportUser(2)">导出收藏成功</div>
             <div class="btnPrimary" @click="inputUser()">导入</div>
         </div>
-        <div class="infoBox" style="height: 290px; width: 700px">
+        <div class="infoBox" style="height: 290px; width: 700px"  v-if="navList[4].show">
             <div class="boxTitle">运行信息</div>
             <div style="float: left; margin: 10px;">
                 <div>预约总量： <input type="text" v-model="orderAllNumber"></div>
@@ -107,7 +116,7 @@
         </div>
         <div class="cleanFloat"></div>
     </div>
-    <div class="infoBox">
+    <div class="infoBox"  v-if="navList[5].show">
         <div class="boxTitle">账号密码设置</div>
         <div>
             <input type="checkbox" name="" v-model="newUserFlag"><label for="">筛选注册新帐号</label>
@@ -116,7 +125,7 @@
     </div>
 
 
-    <div class="infoBox">
+    <div class="infoBox" v-if="navList[6].show">
         <div class="boxTitle">操作信息</div>
         <!--
         <div class="btnPrimary" @click="_verify(0)">测试</div>
@@ -135,7 +144,7 @@
     </div>
 
 
-    <div class="traceBox infoBox">
+    <div class="traceBox infoBox" v-if="navList[6].show">
         <div class="boxTitle">线程信息</div>
         <ul>
             <li v-for="(item, index) in traceList" key="index">
@@ -153,7 +162,7 @@
         </ul>
     </div>
 
-    <div class="userListBox">
+    <div class="userListBox" v-if="navList[6].show">
         
 
         <table class="table">
@@ -214,7 +223,7 @@
 
 </div>
 
-
+</div>
 
 </body>
 <script src="sliderEnc.js"></script>
@@ -238,8 +247,35 @@
     var vm = new Vue({
         el: '#root',
         data: {
-            orderRepAllNum: 30,//重试次数
-            orderNowNum: 0,
+            navList:[
+                {
+                    title: 'ip代理',
+                    show: false
+                },{
+                    title: '功能设置',
+                    show: false
+                },{
+                    title: '验证码平台',
+                    show: false
+                },{
+                    title: '账号设置',
+                    show: true
+                },{
+                    title: '运行设置',
+                    show: false
+                },{
+                    title: '注册设置',
+                    show: false
+                },{
+                    title: '运行',
+                    show: false
+                }
+            ],
+            autoSave: false,
+            orderRepAllNum: 30,//总重试次数
+            orderNowNum: 0,//重试次数
+            favorRepAllNum: 30,//总重试次数
+            favorNowNum: 0,//重试次数
             favorNum: 0,
             flowerNum: 0,
             orderNum: 0,
@@ -346,9 +382,39 @@
             userList: []
         },
         mounted:function(){
-            this._changeProxy()
+            this._changeProxy();
+            this.autoExport();
         },
         methods: {
+            changeNav(index){
+                this.navList = this.navList.map((val, index2) => {
+                    if(index2 == index){
+                        val.show = true
+                    }else{
+                        val.show = false
+                    }
+                    return val
+                })
+            },
+            changeAutoSave(){
+                this.autoSave = ~this.autoSave
+            },
+            autoExport(){
+                let that = this;
+                try{
+                    if(that.autoSave){
+                        that.exportUser(0)
+                        console.log('定时保存...')
+                    }
+                    setTimeout(function(){
+                        that.autoExport()
+                    }, 20000)
+                }catch (e) {
+                    that.autoSave = false;
+                    console.log(e)
+                }
+
+            },
             cleanNum(type){
                 switch (type){
                     case 1:{
@@ -1198,7 +1264,6 @@
                 }catch (e) {
                     console.log(e)
                 }
-
             },
             DZLogin(traceIndex){
                 var that = this;
@@ -1655,6 +1720,14 @@
                 })
             },
             DZFavorByUser(userIndex){
+                //cy=84; cye=daqing; _lxsdk_cuid=16b58dec25fc8-04f32c1e2b375a-37c153e-144000-16b58dec25f45; _lxsdk=16b58dec25fc8-04f32c1e2b375a-37c153e-144000-16b58dec25f45; _hc.v=2a5376b9-cb57-cf2e-60aa-da256c2f9842.1560564122; ll=7fd06e815b796be3df069dec7836c3df; ua=dpuser_5905232438;  uamo=17724806779;
+                //my
+                //dper=599d81245a6e91141b1494f0b73795436516dfe52a1c70ac71f8b1c048f44abc4f91bc0f940463e7d39e9393796523b162a350fe6b3b3219101a9b20ce48590cdd621e8887b6449971b1cfe404a6dcd61f085d4fc16ad8acd99b29d0939896bc;
+                //dper=00b6cbfc9945e14d3dc96a1308089e57f6d2dc989286a05a0ec9df3cebf0bd8dfe95511b515479696b619135950c1b7f2ebfc53b2f47a31fd5d51149ce659d2a;
+                //ctu=d1ac0450e2c57b9c0a13abbda8c1ff34225a606daedd1a083abacc4d319c7106;
+                //ctu=7ee28fa3185a0ee2728bf72f27577aa60f6a83b5955bdd1e4dcfb2476c4ced1c;
+                //
+                // ll=7fd06e815b796be3df069dec7836c3df; ua=dpuser_0822619717;  uamo=18402854770; cy=84; cye=daqing; _lxsdk=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8; _lxsdk_cuid=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8; "
                 var that = this;
                 let item = this.userList[userIndex]
                 return new Promise(resolve => {
@@ -1668,8 +1741,9 @@
                     }
                     request.get({
                         proxy: that.proxy,
-                        //proxy: 'http://183.144.204.224:46517',
-                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34005526'+Date.parse(new Date())+'_'+Date.parse(new Date())+'&referId='+that.shopId+'&favorType=1&_='+Date.parse(new Date()),//+Date.parse(new Date()),
+                        //proxy: 'http://183.144.204.224:46517',//jQuery34005526 _1559026117409
+                        //    http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery341023049111056623595_1559026117409&referId=69719009&favorType=1&favorTags=&_=1559026117411
+                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34102304'+Date.parse(new Date())+'_'+Date.parse(new Date())+'&referId='+that.shopId+'&favorType=1&favorTags=&_='+Date.parse(new Date())+5,//+Date.parse(new Date()),
                         headers: {
                             'Host': 'www.dianping.com',
                             'Connection': 'keep-alive',
@@ -1678,7 +1752,7 @@
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                             'Referer': 'http://www.dianping.com/shop/'+that.shopId,
                             'Accept-Language': 'zh-CN,zh;q=0.9',
-                            'cookie': item.cookie 
+                            'cookie': item.cookie.split("_lxsdk=")[0]
                         },
                         timeout: 5000,
                         //jar: item.jar,
@@ -1692,13 +1766,46 @@
 
                             that.userList[userIndex].errMsg = body
                             if(code == '200'){
+                                that.favorNowNum = 0;
                                 that.favorNum += 1;
                                 that.userList[userIndex].favorNum += 1;
                                 that.userList[userIndex].favorStatus = '成功';
+                            }else{
+                                if(that.favorNowNum < that.favorRepAllNum){
+                                    that.favorNowNum += 1;
+                                    that.userList[userIndex].errMsg = '正在重试...'+that.favorNowNum+'次';
+                                    console.log('正在重试...'+that.favorNowNum+'次')
+                                    setTimeout(function(){
+                                        that.DZFavorByUser(userIndex).then(res => {
+                                            resolve(res)
+                                        });
+                                    }, 500)
+                                    return
+                                }else{
+                                    that.favorNowNum = 0;
+                                    resolve(body)
+                                    return
+                                }
                             }
                             resolve(body)
                             return
                         }catch(e){
+                            if(that.favorNowNum < that.favorRepAllNum){
+                                that.favorNowNum += 1;
+                                that.userList[userIndex].errMsg = '正在重试...'+that.favorNowNum+'次';
+                                console.log('正在重试...'+that.favorNowNum+'次')
+                                setTimeout(function(){
+                                    that.DZFavorByUser(userIndex).then(res => {
+                                        resolve(res)
+                                    });
+                                }, 500)
+                                return
+                            }else{
+                                that.favorNowNum = 0;
+                                resolve(body)
+                                return
+                            }
+
                             that.userList[userIndex].favorStatus = '失败';
                             resolve(body)
                             return
@@ -2009,7 +2116,7 @@
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                             'Referer': 'http://www.dianping.com/shop/'+that.shopId,
                             'Accept-Language': 'zh-CN,zh;q=0.9',
-                            'cookie': that.userList[userIndex].cookie
+                            'cookie': that.userList[userIndex].cookie.split("_lxsdk=")[0]
                         },
                         
                         json: true

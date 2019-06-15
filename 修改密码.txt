@@ -1,0 +1,17 @@
+POST https://account.dianping.com/account/setup/passwordByMobile HTTP/1.1
+Host: account.dianping.com
+Connection: keep-alive
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: https://account.dianping.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: https://account.dianping.com/account/setup/passwordByMobile
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: _dp.ac.v=913c5368-7da4-490b-8008-89bf4c5acab0; __guid=220941192.3410620514414499300.1555578571966.276; _lxsdk_cuid=16a309c13e05e-0df32e0f88e00c-3c604504-1fa400-16a309c13e1c8; _lxsdk=16a309c13e05e-0df32e0f88e00c-3c604504-1fa400-16a309c13e1c8; _hc.v=8a869022-4abd-8ae4-dcc9-94ca1c860e08.1555593696; dper=4c4f0d18239d615d1b2f3039a4e7647fc34836adf047b764ffe78814ee1f4811c07016c188029b1b30f98c4f98b3893fdbf170166d575366c05ad459112cd95ccb6d2799a6e8a3fbbfea845312749c25d4d1190177cb0250350b6f8324b8b3c3; ll=7fd06e815b796be3df069dec7836c3df; ua=dpuserAt_6761165483; ctu=40d8faf1b00a159ba21fb8ac277a292f3eeda8e9a18c44a9ba86edab2bb8f123; uamo=15834682564; _lxsdk_s=16a3371098d-945-212-df1%7C%7C7; monitor_count=8
+Accept-Encoding: gzip, deflate
+Content-Length: 86
+
+code=2&verifyCode=592938&newPW=jin7422373&requestCode=755f2877b17f439bbf9a059307fcb3e2
+
+{"countryCode":null,"errorCode":0,"errorMsg":null,"maskMobile":"158****2564","mobile":null,"redirect":"\/account\/setup\/modifysuccess?type=1"}
