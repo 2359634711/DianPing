@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>v0.1.9 界面修改</title>
@@ -16,118 +17,137 @@
     <script src="../../3-25jiaoyou/gdApp/index.js"></script>
     <script src="../../WX_project/server/HttpsService/test.js"></script>
 </head>
+
 <body>
-<div id="root">
-    v0.1.9 界面修改
-    {{showM ? '' : ''}}
-    <div id="leftNav">
-        <ul>
-            <li :class="item.show ? 'navItem navItemActive' : 'navItem'" v-for="(item, index) in navList" v-key="index" @click="changeNav(index)">
-                {{item.title}}
-            </li>
-        </ul>
-    </div>
-    <div class="rightMain">
-    <div class="infosBox">
-        <div class="infoBox" v-if="navList[0].show">
-            <div class="boxTitle">讯代理API代理</div>
-            <div><input type="checkbox" v-model="proxyFlag"><label>开启代理</label></div>
-            <!--<div>设定更新间隔： <input type="text" v-model="ipAllTime"></div>-->
-            <div>spiderId：<input type="text" v-model="spiderId"></div>
-            <div>orderno：<input type="text" v-model="orderno"></div>
-            <div class="btnPrimary" @click="ProxyLogin()">登录</div>
-            <div>当前代理ip:{{proxy ? proxy : '无代理'}}</div><!-- ({{ipNowTime}}s更换)-->
-            <div><div class="btnPrimary" @click="changeProxyNow()">测试代理</div></div>
-        </div>
-        <div class="infoBox" style="width: 670px;height: 410px;"  v-if="navList[1].show">
-            <div class="boxTitle">预定设置</div>
-            <input type="checkbox" name="" v-model="orderFlag"><label for="">预定</label>
-            <input type="checkbox" name="" v-model="favorFlag"><label for="">收藏</label>
-            <div>店铺id: <input type="" name="" v-model="shopId"></div>
-            <div>预定总数: <input type="" name="" v-model="orderAllNum"></div>
-            <div>不符合预约重试次数: <input type="text" v-model="orderRepAllNum">收藏失败重试次数: <input type="text" v-model="favorRepAllNum"></div>
+    <div id="root">
+        v0.1.9 界面修改
+        {{showM ? '' : ''}}
+        <div id="leftNav">
             <ul>
-                <li style="float: left;box-shadow: 1px 1px 10px #ccc;margin: 10px;" v-for="(item, index) in orderList" key="index">
-                    <div>预定日期: <input type="text" v-model="item.orderData">{{index + 1}}</div>
-                    <div>预定时间: <input type="text" v-model="item.orderTime"></div>
-                    <div>预定信息(可留空): <input type="text" v-model="item.orderContent"></div>
+                <li :class="item.show ? 'navItem navItemActive' : 'navItem'" v-for="(item, index) in navList"
+                    v-key="index" @click="changeNav(index)">
+                    {{item.title}}
                 </li>
             </ul>
         </div>
-        <div class="infoBox" v-if="navList[1].show">
-            <div class="boxTitle">老师收藏</div>
-            <input type="checkbox" name="" v-model="voteFlag"><label for="">老师收藏</label>
-            <div>老师Id: <input type="" name="" v-model="voteId"></div>
-        </div>
-        <div class="infoBox" v-if="navList[1].show">
-            <div class="boxTitle">菜品点赞</div>
-            <input type="checkbox" name="" v-model="flowerFlag"><label for="">菜品点赞</label>
-            <div>店铺Id: <input type="" name="" v-model="shopId"></div>
-            <div>菜品Id: <input type="" name="" v-model="dishId"></div>
-            <div>菜品名称: <input type="" name="" v-model="dishName"></div>
-        </div>
+        <div class="rightMain">
+            <div class="infosBox">
+                <div class="infoBox" v-if="navList[0].show">
+                    <div class="boxTitle">讯代理API代理</div>
+                    <div><input type="checkbox" v-model="proxyFlag"><label>开启代理</label></div>
+                    <!--<div>设定更新间隔： <input type="text" v-model="ipAllTime"></div>-->
+                    <div>spiderId：<input type="text" v-model="spiderId"></div>
+                    <div>orderno：<input type="text" v-model="orderno"></div>
+                    <div class="btnPrimary" @click="ProxyLogin()">登录</div>
+                    <div>当前代理ip:{{proxy ? proxy : '无代理'}}</div><!-- ({{ipNowTime}}s更换)-->
+                    <div>
+                        <div class="btnPrimary" @click="changeProxyNow()">测试代理</div>
+                    </div>
+                </div>
+                <div class="infoBox" style="width: 670px;height: 410px;" v-if="navList[1].show">
+                    <div class="boxTitle">预定设置</div>
+                    <input type="checkbox" name="" v-model="orderFlag"><label for="">预定</label>
+                    <input type="checkbox" name="" v-model="favorFlag"><label for="">收藏</label>
+                    <div>店铺id: <input type="" name="" v-model="shopId"></div>
+                    <div>预定总数: <input type="" name="" v-model="orderAllNum"></div>
+                    <div>不符合预约重试次数: <input type="text" v-model="orderRepAllNum">收藏失败重试次数: <input type="text"
+                            v-model="favorRepAllNum"></div>
+                    <ul>
+                        <li style="float: left;box-shadow: 1px 1px 10px #ccc;margin: 10px;"
+                            v-for="(item, index) in orderList" key="index">
+                            <div>预定日期: <input type="text" v-model="item.orderData">{{index + 1}}</div>
+                            <div>预定时间: <input type="text" v-model="item.orderTime"></div>
+                            <div>预定信息(可留空): <input type="text" v-model="item.orderContent"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="infoBox" v-if="navList[1].show">
+                    <div class="boxTitle">老师收藏</div>
+                    <input type="checkbox" name="" v-model="voteFlag"><label for="">老师收藏</label>
+                    <div>老师Id: <input type="" name="" v-model="voteId"></div>
+                </div>
+                <div class="infoBox" v-if="navList[1].show">
+                    <div class="boxTitle">菜品点赞</div>
+                    <input type="checkbox" name="" v-model="flowerFlag"><label for="">菜品点赞</label>
+                    <div>店铺Id: <input type="" name="" v-model="shopId"></div>
+                    <div>菜品Id: <input type="" name="" v-model="dishId"></div>
+                    <div>菜品名称: <input type="" name="" v-model="dishName"></div>
+                </div>
+                <div class="infoBox" v-if="navList[1].show">
+                    <div class="boxTitle">回答点赞</div>
+                    <input type="checkbox" name="" v-model="answerFlag"><label for="">评论点赞</label>
+                    <div>店铺Id: <input type="" name="" v-model="shopId"></div>
+                    <div>问题Id: <input type="" name="" v-model="questionId"></div>
+                    <div>回答Id: <input type="" name="" v-model="answerId"></div>
+                </div>
+
+                <div class="userInfoBox infoBox" v-if="navList[2].show">
+                    <div class="boxTitle">信盒验证码平台</div>
+                    <div>用户名: <input type="text" v-model="JMuser"></div>
+                    <div>密码： <input type="password" v-model="JMpsw"></div>
+                    <div class="btnPrimary" @click="JMLogin()">登录</div>
+                    <div class="infoSpan">token:{{JMToken ? JMToken : ''}}</div>
+                    <div>
+                        <input type="checkbox" v-model='provinceFlag'><input type="text" v-model='province'
+                            placeholder="输入省份">
+                        <div>
+                            <input type="checkbox" v-model='xnFlag'><label for="">包含虚拟号码</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infoBox" v-if="navList[3].show">
+                    <div class="boxTitle">账号设置</div>
+                    <div>输出路径： <input type="text" v-model="outDir"></div>
+                    <div>导入路径： <input type="text" v-model="inDir"></div>
+                    <div class="btnPrimary" @click="exportUser(0)">导出全部</div>
+                    <div class="btnPrimary" @click="changeAutoSave()">{{autoSave == false ? '定时导出' : '停止导出'}}</div><br>
+                    <div class="btnPrimary" @click="exportUser(1)">导出预约成功</div>
+                    <div class="btnPrimary" @click="exportUser(2)">导出收藏成功</div>
+                    <div class="btnPrimary" @click="inputUser()">导入</div>
+                </div>
+                <div class="infoBox" style="height: 290px; width: 700px" v-if="navList[4].show">
+                    <div class="boxTitle">运行信息</div>
+                    <div style="float: left; margin: 10px;">
+                        <div>预约总量： <input type="text" v-model="orderAllNumber"></div>
+                        <div>预约完成量：{{orderNum}}</div>
+                    </div>
+                    <div style="float: left; margin: 10px;">
+                        <div>收藏总量： <input type="text" v-model="favorAllNumber"></div>
+                        <div>收藏完成量：{{favorNum}}</div>
+                    </div>
+                    <div style="float: left; margin: 10px;">
+                        <div>菜品总量： <input type="text" v-model="flowerAllNumber"></div>
+                        <div>菜品完成量：{{flowerNum}}</div>
+                    </div>
+                    <div style="float: left; margin: 10px;">
+                        <div>老师收藏完成量：{{voteNum}}</div>
+                        <div>老师收藏总量： <input type="text" v-model="voteAllNumber"></div>
+                    </div>
+                    <div style="float: left; margin: 10px;">
+                        <div>登录总量： <input type="text" v-model="loginAllNumber"></div>
+                    </div>
+                    <div style="clear: both;float: none;"></div>
+                    <div class="btnPrimary" @click="cleanNum(1)">清除预约量</div>
+                    <div class="btnPrimary" @click="cleanNum(2)">清除收藏量</div>
+                    <div class="btnPrimary" @click="cleanNum(3)">清除登录量</div>
+                    <div class="btnPrimary" @click="cleanNum(4)">清除菜品量</div>
+                    <div class="btnPrimary" @click="cleanNum(5)">清除老师收藏量</div>
+                </div>
+                <div class="cleanFloat"></div>
+            </div>
+            <div class="infoBox" v-if="navList[5].show">
+                <div class="boxTitle">账号密码设置</div>
+                <div>
+                    <input type="checkbox" name="" v-model="newUserFlag"><label for="">筛选注册新帐号</label>
+                </div>
+                <div>设置密码： <input type="text" v-model="DZpsw"></div>
+            </div>
 
 
-        <div class="userInfoBox infoBox"  v-if="navList[2].show">
-            <div class="boxTitle">飞讯验证码平台</div>
-            <div>用户名: <input type="text" v-model="JMuser"></div>
-            <div>密码： <input type="password" v-model="JMpsw"></div>
-            <div class="btnPrimary" @click="JMLogin()">登录</div>
-            <div class="infoSpan">token:{{JMToken ? JMToken : ''}}</div>
-        </div>
-
-        <div class="infoBox"  v-if="navList[3].show">
-            <div class="boxTitle">账号设置</div>
-            <div>输出路径： <input type="text" v-model="outDir"></div>
-            <div>导入路径： <input type="text" v-model="inDir"></div>
-            <div class="btnPrimary" @click="exportUser(0)">导出全部</div>
-            <div class="btnPrimary" @click="changeAutoSave()">{{autoSave == false ? '定时导出' : '停止导出'}}</div><br>
-            <div class="btnPrimary" @click="exportUser(1)">导出预约成功</div>
-            <div class="btnPrimary" @click="exportUser(2)">导出收藏成功</div>
-            <div class="btnPrimary" @click="inputUser()">导入</div>
-        </div>
-        <div class="infoBox" style="height: 290px; width: 700px"  v-if="navList[4].show">
-            <div class="boxTitle">运行信息</div>
-            <div style="float: left; margin: 10px;">
-                <div>预约总量： <input type="text" v-model="orderAllNumber"></div>
-                <div>预约完成量：{{orderNum}}</div>
-            </div>
-            <div style="float: left; margin: 10px;">
-                <div>收藏总量： <input type="text" v-model="favorAllNumber"></div>
-                <div>收藏完成量：{{favorNum}}</div>
-            </div>
-            <div style="float: left; margin: 10px;">
-                <div>菜品总量： <input type="text" v-model="flowerAllNumber"></div>
-                <div>菜品完成量：{{flowerNum}}</div>
-            </div>
-            <div style="float: left; margin: 10px;">
-                <div>老师收藏完成量：{{voteNum}}</div>
-                <div>老师收藏总量： <input type="text" v-model="voteAllNumber"></div>
-            </div>
-            <div style="float: left; margin: 10px;">
-                <div>登录总量： <input type="text" v-model="loginAllNumber"></div>
-            </div>
-            <div style="clear: both;float: none;"></div>
-            <div class="btnPrimary" @click="cleanNum(1)">清除预约量</div>
-            <div class="btnPrimary" @click="cleanNum(2)">清除收藏量</div>
-            <div class="btnPrimary" @click="cleanNum(3)">清除登录量</div>
-            <div class="btnPrimary" @click="cleanNum(4)">清除菜品量</div>
-            <div class="btnPrimary" @click="cleanNum(5)">清除老师收藏量</div>
-        </div>
-        <div class="cleanFloat"></div>
-    </div>
-    <div class="infoBox"  v-if="navList[5].show">
-        <div class="boxTitle">账号密码设置</div>
-        <div>
-            <input type="checkbox" name="" v-model="newUserFlag"><label for="">筛选注册新帐号</label>
-        </div>
-        <div>设置密码： <input type="text" v-model="DZpsw"></div>
-    </div>
-
-
-    <div class="infoBox" v-if="navList[6].show">
-        <div class="boxTitle">操作信息</div>
-        <!--
+            <div class="infoBox" v-if="navList[6].show">
+                <div class="boxTitle">操作信息</div>
+                <!--
         <div class="btnPrimary" @click="_verify(0)">测试</div>
         <div class="btnPrimary" @click="setTraceList()">设置线程数</div>
         <div class="btnPrimary" @click="JMGetPhone(0)">获取手机号</div>
@@ -136,50 +156,51 @@
         <div class="btnPrimary" @click="DZLogin(0)">登录大众</div>
         <div class="btnPrimary" @click="DZOrder(0)">预约</div>
         <div class="btnPrimary" @click="changeProxy()">{{proxyChangeFlag ? '停止换ip' : '自动换ip'}}</div>-->
-        <div class="btnPrimary" @click="stop()">停止</div>
-        <div class="btnPrimary" @click="start()">启动一个线程</div>
-        <div class="btnPrimary" @click="DZRunByUserList(0,true)">run</div>
-        <div style="display: inline-block;" @click="DZRunByUserList(0,true)">当前位置：{{selectUserIndex}}</div>
-        <div class="btnPrimary" @click="DZRunByUserList(selectUserIndex,true)">继续</div>
-    </div>
+                <div class="btnPrimary" @click="stop()">停止</div>
+                <div class="btnPrimary" @click="start()">启动一个线程</div>
+                <div class="btnPrimary" @click="DZRunByUserList(0,true)">run</div>
+                <div style="display: inline-block;" @click="DZRunByUserList(0,true)">当前位置：{{selectUserIndex}}</div>
+                <div class="btnPrimary" @click="DZRunByUserList(selectUserIndex,true)">继续</div>
+            </div>
 
 
-    <div class="traceBox infoBox" v-if="navList[6].show">
-        <div class="boxTitle">线程信息</div>
-        <ul>
-            <li v-for="(item, index) in traceList" key="index">
-                <div>id: {{item.id}}</div>
-                <div>电话: {{item.phoneNum}}</div>
-                <div>延时:{{item.delayNow}}s</div>
-                <div>消息:{{item.errMsg}}</div>
-                <div>验证码:{{item.vCode}}</div>
-                <div>代理:{{item.proxy}}</div>
-                <!--
+            <div class="traceBox infoBox" v-if="navList[6].show">
+                <div class="boxTitle">线程信息</div>
+                <ul>
+                    <li v-for="(item, index) in traceList" key="index">
+                        <div>id: {{item.id}}</div>
+                        <div>电话: {{item.phoneNum}}</div>
+                        <div>延时:{{item.delayNow}}s</div>
+                        <div>消息:{{item.errMsg}}</div>
+                        <div>验证码:{{item.vCode}}</div>
+                        <div>代理:{{item.proxy}}</div>
+                        <!--
                 <div>状态:{{item.state}}</div>
                 <div>成功数量:{{item.successCount}}</div>
                 -->
-            </li>
-        </ul>
-    </div>
+                    </li>
+                </ul>
+            </div>
 
-    <div class="userListBox" v-if="navList[6].show">
-        
+            <div class="userListBox" v-if="navList[6].show">
 
-        <table class="table">
-    <thead>
-        <tr>
-            <th>编号</th>
-            <th>手机号码</th>
-            <th>登录状态</th>
-            <th>cookie</th>
-            <th>状态</th>
-            <th>成功数量</th>
-            <th>密码</th>
-            <th>信息</th>
-            <th>操作</th>
-        </tr>
-    </thead>
-    <tbody><!--
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>手机号码</th>
+                            <th>登录状态</th>
+                            <th>cookie</th>
+                            <th>状态</th>
+                            <th>成功数量</th>
+                            <th>密码</th>
+                            <th>信息</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
 
 
         <tr>
@@ -192,41 +213,43 @@
             <td>psw</td>
             <td>errMsg</td>
         </tr>-->
-        
-        <tr v-for="(item, index) in userList" @click="selectUser(index)" :class="selectUserIndex == index ? 'userSelected' : ''">
-            <td>{{index + 1}}</td>
-            <td>{{item.phoneNum}}</td>
-            <td>{{item.loginStatus}}</td>
-            <td class="ck"><textarea>{{item.cookie}}</textarea></td>
-            <td>{{item.orderStatus}}/{{item.favorStatus}}/{{item.flowerStatus}}/{{item.voteStatus}}</td>
-            <td>{{item.orderNum}}/{{item.favorNum}}/{{item.flowerNum}}/{{item.voteNum}}</td>
-            <td>{{item.psw}}</td>
-            <td class="errMsg"><textarea>{{item.errMsg}}</textarea></td>
-            <td>
-                <div>
-                    <div class="btnPrimary" @click="DZOrderByUser(index)">预约</div>
-                    <div class="btnPrimary" @click="DZFavorByUser(index)">收藏</div>
-                    <div class="btnPrimary" @click="DZAddFlowerByUser(index)">菜品点赞</div>
-                    <div class="btnPrimary" @click="DZAddVoteByUser(index)">老师收藏</div>
-                    <div class="btnPrimary" @click="DZloginByUser(index)">账号密码登录</div>
 
-                    <button class="btn btn-danger" @click="removeUser(index)">删除</button>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-        
+                        <tr v-for="(item, index) in userList" @click="selectUser(index)"
+                            :class="selectUserIndex == index ? 'userSelected' : ''">
+                            <td>{{index + 1}}</td>
+                            <td>{{item.phoneNum}}</td>
+                            <td>{{item.loginStatus}}</td>
+                            <td class="ck"><textarea>{{item.cookie}}</textarea></td>
+                            <td>{{item.orderStatus}}/{{item.favorStatus}}/{{item.flowerStatus}}/{{item.voteStatus}}</td>
+                            <td>{{item.orderNum}}/{{item.favorNum}}/{{item.flowerNum}}/{{item.voteNum}}</td>
+                            <td>{{item.psw}}</td>
+                            <td class="errMsg"><textarea>{{item.errMsg}}</textarea></td>
+                            <td>
+                                <div>
+                                    <div class="btnPrimary" @click="DZOrderByUser(index)">预约</div>
+                                    <div class="btnPrimary" @click="DZFavorByUser(index)">收藏</div>
+                                    <div class="btnPrimary" @click="DZAddFlowerByUser(index)">菜品点赞</div>
+                                    <div class="btnPrimary" @click="DZAddAnswerLikeByUser(index)">评论点赞</div>
+                                    <div class="btnPrimary" @click="DZAddVoteByUser(index)">老师收藏</div>
+                                    <div class="btnPrimary" @click="DZloginByUser(index)">账号密码登录</div>
+
+                                    <button class="btn btn-danger" @click="removeUser(index)">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+        </div>
+
     </div>
 
-
-
-</div>
-
-</div>
-
 </body>
-<script src="sliderEnc.js"></script>
+<script src="slider8_30.js"></script>
 <script>
     const ipcRenderer = require('electron').ipcRenderer;
 
@@ -241,32 +264,35 @@
 
 
     const enc = require('./enc.js')
-
     //const encPsw = require('./testPsw.js')
 
+    const Answer = require('./answer.js')
     var vm = new Vue({
         el: '#root',
         data: {
-            navList:[
+            province: '',
+            provinceFlag: false,
+            xnFlag: true,//包含虚拟号码
+            navList: [
                 {
                     title: 'ip代理',
                     show: false
-                },{
+                }, {
                     title: '功能设置',
                     show: false
-                },{
+                }, {
                     title: '验证码平台',
                     show: false
-                },{
+                }, {
                     title: '账号设置',
                     show: true
-                },{
+                }, {
                     title: '运行设置',
                     show: false
-                },{
+                }, {
                     title: '注册设置',
                     show: false
-                },{
+                }, {
                     title: '运行',
                     show: false
                 }
@@ -292,13 +318,16 @@
             proxyFlag: false,
             spiderId: '142e63b2c3924466853b5d35b8eb7b97',
             orderno: 'YZ201812266261bUtkET',
-            shopId: '103594715',
+            shopId: '5358485',
             dishId: '151119138',
             dishName: '芝士铁板炒鸡',
+            questionId: '12371579',
+            answerId: '235416325',
             voteId: 7174269,
             orderFlag: false,//预定开关
             favorFlag: false,//收藏开关
             flowerFlag: false,//菜品点赞开关
+            answerFlag: false,//回答点赞开关
             voteFlag: false,//老师收藏开关
             flowerHref: '',
             newUserFlag: false,
@@ -308,7 +337,7 @@
             inDir: './userDate.ini',
             showM: false,//显示画面使用
 
-            orderList:[
+            orderList: [
                 {
                     orderData: '2019-04-23',//日期
                     orderTime: '19:30',//时间
@@ -333,17 +362,17 @@
             ipAllTime: 30,//30秒换ip
             ipNowTime: 10,//
             stopFlag: true,
-            xmid: 11366,//飞讯22
-            JMuser: '',//2359634711
-            JMpsw: '',
+            xmid: 1730,//11366//飞讯22
+            JMuser: 'dzdp666',//2359634711
+            JMpsw: 'jinsha520',
             proxy: '',//http://12.324.23:3433
             msg: 12,
             JMToken: '',
             JMUid: '',
-            JMBalance:'',
+            JMBalance: '',
             msg: '',
             tranceNum: 1,
-            traceList:[/*
+            traceList: [/*
                 {
                     delayAll:'',//秒
                     delayNow:'',//现在秒(倒计时)
@@ -381,91 +410,91 @@
             ],
             userList: []
         },
-        mounted:function(){
+        mounted: function () {
             this._changeProxy();
             this.autoExport();
         },
         methods: {
-            changeNav(index){
+            changeNav(index) {
                 this.navList = this.navList.map((val, index2) => {
-                    if(index2 == index){
+                    if (index2 == index) {
                         val.show = true
-                    }else{
+                    } else {
                         val.show = false
                     }
                     return val
                 })
             },
-            changeAutoSave(){
+            changeAutoSave() {
                 this.autoSave = ~this.autoSave
             },
-            autoExport(){
+            autoExport() {
                 let that = this;
-                try{
-                    if(that.autoSave){
+                try {
+                    if (that.autoSave) {
                         that.exportUser(0)
                         console.log('定时保存...')
                     }
-                    setTimeout(function(){
+                    setTimeout(function () {
                         that.autoExport()
                     }, 20000)
-                }catch (e) {
+                } catch (e) {
                     that.autoSave = false;
                     console.log(e)
                 }
 
             },
-            cleanNum(type){
-                switch (type){
-                    case 1:{
+            cleanNum(type) {
+                switch (type) {
+                    case 1: {
                         this.orderNum = 0;
                         break;
                     }
-                    case 2:{
+                    case 2: {
                         this.favorNum = 0;
                         break;
                     }
-                    case 3:{
+                    case 3: {
                         this.loginNum = 0;
                         break;
                     }
-                    case 4:{
+                    case 4: {
                         this.flowerNum = 0;
                         break;
                     }
-                    case 5:{
+                    case 5: {
                         this.voteNum = 0;
                         break;
                     }
                 }
             },
-            selectUser(userIndex){
+            selectUser(userIndex) {
                 this.selectUserIndex = userIndex;
             },
-            removeUser(userIndex){
+            removeUser(userIndex) {
                 this.userList = this.userList.filter((item, index) => {
                     return index != userIndex
                 })
             },
-            changeProxyNow(){
+            changeProxyNow() {
                 let that = this;
                 return new Promise(resolve => {
                     request.get({
-                        url: 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId='+that.spiderId+'&orderno='+that.orderno+'&returnType=2&count=1',
+                        url: 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=' + that.spiderId + '&orderno=' + that.orderno + '&returnType=2&count=1',
                         json: true
                     }, (err, res, body) => {
                         console.log(body)
 
-                        try{
-                            if(err || eval(body.ERRORCODE)){
+                        try {
+                            if (err || eval(body.ERRORCODE)) {
                                 resolve({
                                     err: 1,
                                     msg: err || body.ERRORCODE
                                 })
-                            }else{
+                            } else {
                                 let port = body.RESULT[0].port;
                                 let ip = body.RESULT[0].ip;
-                                that.proxy = 'http://'+ip+':'+port;
+                                that.proxy = 'http://' + ip + ':' + port;
 
                                 resolve({
                                     err: 0,
@@ -473,7 +502,7 @@
                                 })
 
                             }
-                        }catch(e){
+                        } catch (e) {
                             that.proxy = '';
                             cosnole.log(e)
                             /*
@@ -486,7 +515,7 @@
                     })
                 })//更换ip
             },
-            inputUser(){
+            inputUser() {
                 let that = this;
                 let dir = this.inDir;
                 fs.readFile(dir, 'utf8', (err, body) => {
@@ -502,28 +531,28 @@
                             })
 
                         })
-                    }catch (e) {
+                    } catch (e) {
                         console.log(e)
                     }
 
                 })
             },
-            exportUser(type){
+            exportUser(type) {
                 //0全部 1预约 2收藏
                 let dir = this.outDir;
                 let userStr;
-                switch (type){
-                    case 0:{
+                switch (type) {
+                    case 0: {
                         userStr = JSON.stringify(this.userList);
                         break;
                     }
-                    case 1:{
+                    case 1: {
                         userStr = JSON.stringify(this.userList.filter((item, index) => {
                             return item.orderNum > 0
                         }));
                         break;
                     }
-                    case 2:{
+                    case 2: {
                         userStr = JSON.stringify(this.userList.filter((item, index) => {
                             return item.favorNum > 0
                         }));
@@ -544,26 +573,26 @@
                     console.log(err)
                 })
             },
-            stop(){
+            stop() {
                 this.stopFlag = true;
             },
-            start(){
-                if(this.stopFlag){
+            start() {
+                if (this.stopFlag) {
                     this.traceList = [];
                 }
                 this.stopFlag = false;
                 console.log(this.traceList.length)
                 this.startOne(this.traceList.length, true)
             },
-            startOne(traceIndex, ifNew){
-                if(this.stopFlag){
+            startOne(traceIndex, ifNew) {
+                if (this.stopFlag) {
                     let that = this;
                     this._log(traceIndex, '已停止')
                     //this.traceList[traceIndex].errMsg = '已停止';
                     this.showM = !this.showM;
                     return
                 }
-                if(!ifNew){
+                if (!ifNew) {
                     ifNew = false;
                 }
                 //初始化线程
@@ -572,162 +601,162 @@
                 this.traceList[traceIndex] = that.traceInit();
                 var item = this.traceList[traceIndex];
                 //初始化userlist
-                if(ifNew){
+                if (ifNew) {
                     this.userList.push(that.userInit());
                 }
                 this.traceList[traceIndex].id = this.userList.length - 1;
                 that._log(traceIndex, '正在更换ip....')
                 //that.changeTraceProxy(traceIndex).then(res => {
-                    //获取号码
-                    that._log(traceIndex, '正在获取号码....')
-                    that._JMGetPhone(traceIndex).then(res=>{
-                        that._log(traceIndex, '获取号码完成')
-                        if(res.err){
-                            that._log(traceIndex, '获取号码失败，准备重试...1s')
+                //获取号码
+                that._log(traceIndex, '正在获取号码....')
+                that._JMGetPhone(traceIndex).then(res => {
+                    that._log(traceIndex, '获取号码完成')
+                    if (res.err) {
+                        that._log(traceIndex, '获取号码失败，准备重试...1s')
+                        setTimeout(function () {
+                            that.removeUser(that.traceList[traceIndex].id)
+                            that.startOne(traceIndex, true)
+                        }, 1000)
+                        return
+                    } else {
+                        that.traceList[traceIndex].phoneNum = res.phoneNum;
+                        that.userList[that.traceList[traceIndex].id].phoneNum = res.phoneNum;
+                    }
+                    //发送验证码
+                    that._log(traceIndex, '检测新用户...')
+                    /*
+                    that.checkNew(traceIndex).then(res => {
+                        if(!res.res){
                             setTimeout(function(){
-                                that.removeUser(that.traceList[traceIndex].id)
-                                that.startOne(traceIndex, false)
-                            }, 1000)
-                            return
-                        }else{
-                            that.traceList[traceIndex].phoneNum = res.phoneNum;
-                            that.userList[that.traceList[traceIndex].id].phoneNum = res.phoneNum;
-                        }
-                        //发送验证码
-                        that._log(traceIndex, '检测新用户...')
-                        /*
-                        that.checkNew(traceIndex).then(res => {
-                            if(!res.res){
-                                setTimeout(function(){
-                                    that._log(traceIndex, '检测到老用户跳过...')
-                                    that.startOne(traceIndex, false)
-                                }, 3000)
-                                return
-                            }*/
-
-                        that._log(traceIndex, '准备发送验证码...')
-                        var funSend;
-                        if(that.newUserFlag){
-                            funSend = that.checkNew;
-                        }else{
-                            funSend = that.sendMsg;
-                        }
-                        //that.sendMsg(traceIndex).then(res =>{//普通登录
-                        funSend(traceIndex).then(res => {
-                            //新用户和注册
-                            if(!res.res) {//
-                                that.JMSfhm(traceIndex);
                                 that._log(traceIndex, '检测到老用户跳过...')
-                                setTimeout(function () {
-                                    that.removeUser(that.traceList[traceIndex].id)
-                                    that.startOne(traceIndex, true)
-                                }, 3000)
-                                return
-                            }
-                            let funProxy;
-                            if(that.proxyFlag){
-                                funProxy = that.changeTraceProxy;
-                            }else{
-                                funProxy = that.funDelay;
-                            }
-                            funProxy(that.proxyFlag ? traceIndex : 500).then(res => {
-                                 that._log(traceIndex, '验证码发送完毕...'+res)
-                                //that._log(traceIndex, res);
-                                //发送完毕
+                                that.startOne(traceIndex, false)
+                            }, 3000)
+                            return
+                        }*/
 
-                                //接码平台接收验证码
-                                that._log(traceIndex, '准备获取验证码...')
-                                that.JMGetMsg(traceIndex).then(res => {
-                                    if(res.err && that.stopFlag){
-                                        that._log(traceIndex, '已停止')
-                                        //that.traceList[traceIndex].errMsg = '已停止'
-                                        this.showM = !this.showM;
-                                        return
-                                    }
-                                    console.log(res);
-                                    that._log(traceIndex, '验证码获取成功...'+res)
-                                    if(res.err){
-                                        that._log(traceIndex, '验证码获取失败...准备重新发送...1s')
-                                        setTimeout(function(){
-                                            that.removeUser(that.traceList[traceIndex].id)
-                                            that.startOne(traceIndex, true)
-                                        }, 1000)
-                                        return
-                                    }else{
-                                        let Vcode = that.getVcode(res.msg, '评】', '（大') || that.getVcode(res.msg, '到 ', '（' ) || that.getVcode(res.msg, '码：','。');
-                                        if(Vcode){
-                                            that._log(traceIndex, '验证码获取成功..【'+Vcode+'】,准备登录....')
-                                            that.traceList[traceIndex].vCode = Vcode;
-                                            var funLogin;
-                                            if(that.newUserFlag){
-                                                funLogin = that._DZregister;
-                                            }else{
-                                                funLogin = that.DZLogin;
-                                            }
-                                            funLogin(traceIndex).then(res => {//普通登录
+                    that._log(traceIndex, '准备发送验证码...')
+                    var funSend;
+                    if (that.newUserFlag) {
+                        funSend = that.checkNew;
+                    } else {
+                        funSend = that.sendMsg;
+                    }
+                    //that.sendMsg(traceIndex).then(res =>{//普通登录
+                    funSend(traceIndex).then(res => {
+                        //新用户和注册
+                        if (!res.res) {//
+                            that.JMSfhm(traceIndex);
+                            that._log(traceIndex, '检测到老用户跳过...')
+                            setTimeout(function () {
+                                that.removeUser(that.traceList[traceIndex].id)
+                                that.startOne(traceIndex, true)
+                            }, 3000)
+                            return
+                        }
+                        let funProxy;
+                        if (that.proxyFlag) {
+                            funProxy = that.changeTraceProxy;
+                        } else {
+                            funProxy = that.funDelay;
+                        }
+                        funProxy(that.proxyFlag ? traceIndex : 500).then(res => {
+                            that._log(traceIndex, '验证码发送完毕...' + res)
+                            //that._log(traceIndex, res);
+                            //发送完毕
+
+                            //接码平台接收验证码
+                            that._log(traceIndex, '准备获取验证码...')
+                            that.JMGetMsg(traceIndex).then(res => {
+                                if (res.err && that.stopFlag) {
+                                    that._log(traceIndex, '已停止')
+                                    //that.traceList[traceIndex].errMsg = '已停止'
+                                    this.showM = !this.showM;
+                                    return
+                                }
+                                console.log(res);
+                                that._log(traceIndex, '验证码获取成功...' + res)
+                                if (res.err) {
+                                    that._log(traceIndex, '验证码获取失败...准备重新发送...1s')
+                                    setTimeout(function () {
+                                        that.removeUser(that.traceList[traceIndex].id)
+                                        that.startOne(traceIndex, true)
+                                    }, 1000)
+                                    return
+                                } else {
+                                    let Vcode = that.getVcode(res.msg, '评】', '（大') || that.getVcode(res.msg, '到 ', '（') || that.getVcode(res.msg, '码：', '。');
+                                    if (Vcode) {
+                                        that._log(traceIndex, '验证码获取成功..【' + Vcode + '】,准备登录....')
+                                        that.traceList[traceIndex].vCode = Vcode;
+                                        var funLogin;
+                                        if (that.newUserFlag) {
+                                            funLogin = that._DZregister;
+                                        } else {
+                                            funLogin = that.DZLogin;
+                                        }
+                                        funLogin(traceIndex).then(res => {//普通登录
                                             //that._DZregister(traceIndex).then(res => {//登录并设置密码
-                                                //登录成功进行预定操作
-                                                that._log(traceIndex, '登录成功...准备预约...');
-                                                
+                                            //登录成功进行预定操作
+                                            that._log(traceIndex, '登录成功...准备预约...');
+
                                             that.DZOrder(traceIndex).then(res => {
-                                                that._log(traceIndex, '预约完毕...'+res);
+                                                that._log(traceIndex, '预约完毕...' + res);
                                                 that.DZFavor(traceIndex).then(res => {
-                                                    that._log(traceIndex, '收藏完毕...'+res);
+                                                    that._log(traceIndex, '收藏完毕...' + res);
                                                     that.startOne(traceIndex, true)
                                                 })
                                             })
-                                                
 
-                                            })
-                                        }else{
-                                            that._log(traceIndex, '验证码解析失败');
-                                            that.startOne(traceIndex, true)
-                                        }
 
+                                        })
+                                    } else {
+                                        that._log(traceIndex, '验证码解析失败');
+                                        that.startOne(traceIndex, true)
                                     }
-                                    //获取到了验证码
-                                    //进行登录
-                                })
-                            })//之后还ip
-                        })
+
+                                }
+                                //获取到了验证码
+                                //进行登录
+                            })
+                        })//之后还ip
                     })
+                })
                 //});//之前还ip
                 //})
             },
-            funDelay(TimeNum){
-              return new Promise(resolve => {
-                  setTimeout(function(){
-                      resolve()
-                  }, TimeNum)
-              })
+            funDelay(TimeNum) {
+                return new Promise(resolve => {
+                    setTimeout(function () {
+                        resolve()
+                    }, TimeNum)
+                })
             },
-            JMSfhm(traceIndex){
+            JMSfhm(traceIndex) {
                 let that = this;
                 return new Promise(resolve => {
                     request.get({
-                        url: 'http://www.517orange.com:9000/devApi/cancelSMSRecv?uid='+that.JMUid+'&pid='+that.xmid+'&mobile='+that.traceList[traceIndex].phoneNum+'&token='+that.JMToken
+                        url: 'http://www.517orange.com:9000/devApi/cancelSMSRecv?uid=' + that.JMUid + '&pid=' + that.xmid + '&mobile=' + that.traceList[traceIndex].phoneNum + '&token=' + that.JMToken
                     })
                 })
             },
-            getVcode(msg, str1, str2){
-                try{
+            getVcode(msg, str1, str2) {
+                try {
                     let vCode = null;
                     var temps = msg.split(str1);
-                    if(temps.length > 1){
+                    if (temps.length > 1) {
                         temps = temps[1].split(str2);
-                        if(temps.length > 1) {
+                        if (temps.length > 1) {
                             vCode = temps[0]
                         }
                     }
                     return vCode;
-                }catch (e) {
+                } catch (e) {
                     console.log("取中间操作出现错误")
                     console.log(e);
                     return "";
                 }
 
             },
-            userInit(){
+            userInit() {
                 return {
                     phoneNum: '',//手机号码
                     loginStatus: '未登录',//登录状态
@@ -746,22 +775,22 @@
                     voteNum: 0,
                 }
             },
-            traceInit(){
-                return{
+            traceInit() {
+                return {
                     delayAllTimes: 30,//循环次数
                     delayNowTimes: 0,//现在循环次数
-                    delayAll:5,//秒
-                    delayNow:5,//现在秒(倒计时)
+                    delayAll: 5,//秒
+                    delayNow: 5,//现在秒(倒计时)
                     id: '',//编号
                     state: '',//状态
                     ips: [],//['32.42.34.231:5050','124.243.133.43:3030']
                     msg: '',//消息
-                    successCount:'',//完成的数量
-                    jar:request.jar(),//cookieJar
-                    phoneNum:'',//电话号码
-                    phoneMsg:'',//短信
+                    successCount: '',//完成的数量
+                    jar: request.jar(),//cookieJar
+                    phoneNum: '',//电话号码
+                    phoneMsg: '',//短信
                     vCode: '',
-                    token:'',//登录token
+                    token: '',//登录token
                     uuid: '',//uuid
                     errMsg: '',
                     proxy: '',
@@ -770,38 +799,38 @@
                     orderNum: 0//临时的预定次数
                 }
             },
-            changeTraceProxy(traceIndex){
+            changeTraceProxy(traceIndex) {
                 let that = this;
                 return new Promise(resolve => {
-/*
-                    resolve({
-                        err: 0,
-                        msg: "跳过换ip"
-                    });
-                    return;*/
+                    /*
+                                        resolve({
+                                            err: 0,
+                                            msg: "跳过换ip"
+                                        });
+                                        return;*/
                     request.get({
-                        url: 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId='+that.spiderId+'&orderno='+that.orderno+'&returnType=2&count=1',
+                        url: 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=' + that.spiderId + '&orderno=' + that.orderno + '&returnType=2&count=1',
                         json: true
                     }, (err, res, body) => {
                         console.log(body)
 
-                        try{
-                            if(err || eval(body.ERRORCODE)){
+                        try {
+                            if (err || eval(body.ERRORCODE)) {
                                 resolve({
                                     err: 1,
                                     msg: err || body.ERRORCODE
                                 })
-                            }else{
+                            } else {
                                 let port = body.RESULT[0].port;
                                 let ip = body.RESULT[0].ip;
-                                that.traceList[traceIndex].proxy = 'http://'+ip+':'+port;
+                                that.traceList[traceIndex].proxy = 'http://' + ip + ':' + port;
                                 resolve({
                                     err: 0,
                                     data: body.RESULT
                                 })
 
                             }
-                        }catch(e){
+                        } catch (e) {
                             that.traceList[traceIndex].proxy = '';
                             console.log(e)
                             //changeTraceProxy(traceIdnex);
@@ -815,46 +844,46 @@
                     })
                 })//更换ip
             },
-            changeProxy(){
-                if(this.proxyChangeFlag){//正在换
+            changeProxy() {
+                if (this.proxyChangeFlag) {//正在换
                     this.proxyChangeFlag = false;
                     return
-                }else{
+                } else {
                     this.proxyChangeFlag = true;
                     //this._changeProxy();
                 }
             },
-            _changeProxy(){
+            _changeProxy() {
                 var that = this;
-                if(!this.proxyChangeFlag){
-                    setTimeout(function(){
+                if (!this.proxyChangeFlag) {
+                    setTimeout(function () {
                         that._changeProxy()
                     }, 1000)
                     return
                 }
 
-                if(this.stopFlag){
-                    setTimeout(function(){
+                if (this.stopFlag) {
+                    setTimeout(function () {
                         that._changeProxy()
                     }, 1000)
                     return
                 }
-                
-                if(this.ipNowTime > 0){
+
+                if (this.ipNowTime > 0) {
                     this.ipNowTime += -1;
-                    setTimeout(function(){
+                    setTimeout(function () {
                         that._changeProxy()
                     }, 1000)
                     return
                 }
                 try {
-                    this.ipNowTime =eval(this.ipAllTime);
-                }catch (e) {
+                    this.ipNowTime = eval(this.ipAllTime);
+                } catch (e) {
                     this.ipAllTime = 60;
-                    this.ipNowTime =this.ipAllTime;
+                    this.ipNowTime = this.ipAllTime;
                 }
 
-                
+
                 return new Promise(resolve => {
                     request.get({
                         url: 'http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=142e63b2c3924466853b5d35b8eb7b97&orderno=YZ201812266261bUtkET&returnType=2&count=1',
@@ -862,16 +891,16 @@
                     }, (err, res, body) => {
                         console.log(body)
 
-                        try{
-                            if(err || eval(body.ERRORCODE)){
+                        try {
+                            if (err || eval(body.ERRORCODE)) {
                                 resolve({
                                     err: 1,
                                     msg: err || body.ERRORCODE
                                 })
-                            }else{
+                            } else {
                                 let port = body.RESULT[0].port;
                                 let ip = body.RESULT[0].ip;
-                                that.proxy = 'http://'+ip+':'+port;
+                                that.proxy = 'http://' + ip + ':' + port;
                                 that._changeProxy();
                                 /*
                                 resolve({
@@ -880,7 +909,7 @@
                                 })*/
 
                             }
-                        }catch(e){
+                        } catch (e) {
                             that.proxy = '';
                             cosnole.log(e)
                             that._changeProxy();
@@ -890,14 +919,14 @@
                                 msg: "未知错误，请看调试信息"
                             })*/
                         }
-                        
+
                     })
                 })//更换ip
             },
-            JMGetPhone(traceIndex){
+            JMGetPhone(traceIndex) {
 
             },
-            sendMsg(traceIndex){
+            sendMsg(traceIndex) {
                 let that = this;
                 return new Promise(resolve => {
                     that._checkRisk(traceIndex).then(res => {
@@ -915,16 +944,16 @@
 
                     })//发送短信
                 })
-                
+
             },
-            _checkRisk(traceIndex, riskChannel){
-                if(!riskChannel){
+            _checkRisk(traceIndex, riskChannel) {
+                if (!riskChannel) {
                     riskChannel = '202'
                 }
                 //获取token
                 var that = this;
                 var item = this.traceList[traceIndex]
-                let content = "https://account.dianping.com/account/ajax/checkRisk?riskChannel=202&user="+item.phoneNum;
+                let content = "https://account.dianping.com/account/ajax/checkRisk?riskChannel=202&user=" + item.phoneNum;
                 let _token = enc.fuckToken(content);
                 this.token = _token;
                 return new Promise(resolve => {
@@ -944,63 +973,63 @@
                         },
                         json: true,
                         jar: item.jar,
-                        body: 'riskChannel=202&user='+item.phoneNum+'&_token='+_token
+                        body: 'riskChannel=202&user=' + item.phoneNum + '&_token=' + _token
                     }, (err, res, body) => {
-                        try{
+                        try {
                             console.log(body)
-                        if(!err){
-                            try {
-                                that.traceList[traceIndex].publicKey = body.msg.publicKey;
-                                if(body.code == 200){
-                                    if(body.msg.riskLevel){
-                                        that._slideBlockAuth(traceIndex).then(res => {
+                            if (!err) {
+                                try {
+                                    that.traceList[traceIndex].publicKey = body.msg.publicKey;
+                                    if (body.code == 200) {
+                                        if (body.msg.riskLevel) {
+                                            that._slideBlockAuth(traceIndex).then(res => {
+                                                resolve({
+                                                    err: 0
+                                                })
+                                            })
+                                        } else {
+                                            that.traceList[traceIndex].uuid = body.msg.uuid
                                             resolve({
                                                 err: 0
                                             })
-                                        })
-                                    }else{
-                                        that.traceList[traceIndex].uuid = body.msg.uuid
+                                        }
+
+                                    } else {
+
                                         resolve({
-                                            err: 0
+                                            err: 1
                                         })
                                     }
-
-                                }else{
-
+                                } catch (e) {
                                     resolve({
                                         err: 1
                                     })
                                 }
-                            }catch (e) {
+
+                            } else {
                                 resolve({
                                     err: 1
                                 })
                             }
-
-                        }else{
-                            resolve({
-                                err: 1
-                            })
-                        }
-                        }catch(e){
+                        } catch (e) {
                             console.log(e)
                             resolve({
                                 err: 1
                             })
 
                         }
-                        
+
                     })
                 })//不用管sendMsg
             },//检测风险
-            _slideBlockAuth(traceIndex){
+            _slideBlockAuth(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex]
-                return new Promise(resolve =>  {
+                return new Promise(resolve => {
                     request.post({
                         proxy: that.traceList[traceIndex].proxy,
                         url: 'https://maccount.dianping.com/ajax/json/account/slideBlockAuth',
-                        body: 'captchaSource=3&countryCode=86&mobile='+item.phoneNum+'&dpid=',
+                        body: 'captchaSource=3&countryCode=86&mobile=' + item.phoneNum + '&dpid=',
                         headers: {
                             'Host': 'maccount.dianping.com',
                             'Connection': 'keep-alive',
@@ -1015,16 +1044,16 @@
                         json: true,
                         jar: item.jar
                     }, (err, res, body) => {
-                        try{
+                        try {
                             that.traceList[traceIndex].requestCode = body.requestCode;
                             console.log(body)
                             that._getSeedConfig(traceIndex).then(res => {
                                 console.log(res)
-                                that._verify(traceIndex).then(res=>{//提交
+                                that._verify(traceIndex).then(res => {//提交
                                     resolve(res)
                                 })
                             })
-                        }catch (e) {
+                        } catch (e) {
                             console.log(e)
                             resolve({
                                 err: 1
@@ -1035,7 +1064,7 @@
                     })
                 })//不用管sendMsg
             },////获取requestCode
-            _slideBlockResult(traceIndex){
+            _slideBlockResult(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex];
                 return new Promise(resolve => {
@@ -1053,26 +1082,26 @@
                             'Content-type': 'application/x-www-form-urlencoded',
                             'Referer': 'https://maccount.dianping.com/login?redir=https%3A%2F%2Fm.dianping.com%2Fnmy%2Fmyinfo'
                         },
-                        body: 'captchaSource=3&requestCode='+item.requestCode+'&responseCode='+item.responseCode,
+                        body: 'captchaSource=3&requestCode=' + item.requestCode + '&responseCode=' + item.responseCode,
                         jar: item.jar,
                         json: true
 
                     }, (err, res, body) => {
                         console.log(body)
-                        if(err){
+                        if (err) {
                             resolve({
                                 err,
                                 body,
                                 msg: '获取uuid失败(网络问题)'
                             })
-                        }else{
-                            if(body.uuid.length < 1){
+                        } else {
+                            if (body.uuid.length < 1) {
                                 resolve({
                                     err,
                                     body,
                                     msg: '获取uuid失败'
                                 })
-                            }else{
+                            } else {
                                 console.log(body)
                                 that.traceList[traceIndex].uuid = body.uuid;
                                 resolve({
@@ -1084,11 +1113,11 @@
                     })
                 })//不用管sendMsg
             },//获取uuid
-            _verify(traceIndex){
-               var that = this;
+            _verify(traceIndex) {
+                var that = this;
                 var item = this.traceList[traceIndex];
-                var time = Math.random()*10-5;
-                var data ={"env":{"zone":[240,35],"client":[365.5,336.5],"Timestamp":[Date.parse(new Date()),Date.parse(new Date()) + 902],"count":1,"timeout":0},"trajectory":[{"point":[[0,381+time,360+time,902+time],[0,388+time,358+time,974+time],[0,422+time,358+time,992+time],[0,498+time,358+time,1007+time],[0,618+time,356+time,1024+time]],"vector":{"orientation":"v"}}]};
+                var time = Math.random() * 10 - 5;
+                var data = { "env": { "zone": [240, 35], "client": [365.5, 336.5], "Timestamp": [Date.parse(new Date()), Date.parse(new Date()) + 902], "count": 1, "timeout": 0 }, "trajectory": [{ "point": [[0, 381 + time, 360 + time, 902 + time], [0, 388 + time, 358 + time, 974 + time], [0, 422 + time, 358 + time, 992 + time], [0, 498 + time, 358 + time, 1007 + time], [0, 618 + time, 356 + time, 1024 + time]], "vector": { "orientation": "v" } }] };
 
                 console.log(item.requestCode)
                 return new Promise(resolve => {
@@ -1119,29 +1148,30 @@
                                     'Connection': 'keep-alive',
                                     'Pragma': 'no-cache',
                                     'Cache-Control': 'no-cache',
-                                    'Authorization': 'Bearer '+item.requestCode,
-                                    'Origin': 'https://maccount.dianping.com',
+                                    'Sec-Fetch-Mode': 'cors',
+                                    'Authorization': 'Bearer ' + item.requestCode,
+                                    'Origin': 'https://account.dianping.com',
                                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                                     'Content-Type': 'application/x-www-form-urlencoded',
                                     'Accept': '*/*',
-                                    'Referer': 'https://maccount.dianping.com/login?redir=https%3A%2F%2Fm.dianping.com%2Fnmy%2Fmyinfo'
+                                    'Referer': 'https://account.dianping.com/account/iframeLogin?callback=EasyLogin_frame_callback0&wide=false&protocol=https:&redir=http%3A%2F%2Fwww.dianping.com'
                                 },
                                 json: true,
                                 //jar: item.jar,
                                 //y%2F9AIux5jdHYuEpr7dILFiSSmqMqtVjNs%2B9weynhrpq9KxJeoTcjPka4B56iPuzTeOLA69ic9dax79CUdSIdUbaqGO2xSBJfcHzlIsIoFxqO73zE9I2f8So3ZX5CVaJdIvJTK5ykUv6fg7oKD4y5RM4wJWtBuxTNXdfpqdFKWo3ruau2h7BXuWkkacMEf1zqpfGdrG1SjFJ82YWacYtwxezedmRXZ6tNFcDeMuqYAP3uD8pXK1NMm77uekUfTrFHHX%2BuovuI%2BET5qqccYu5vUxr%2Fu%2FUaKxexzykDIZxTe83BwJHqYM4BwlhhEtH4uSUhg6RrWpNtLensk5lK1modWLLIZfOneWQC4lSQ81vLXcPlERULlzeus9WKQMpd5UK0Svg6TQogMHFenalgwnob00SdHgCu0doA38NOXqG9JWqczxAZq9lWpZvY6pJcQI6z36I7yvSs4%2BVBumRvfxecyP1eLz%2FCIqseJWuRH74etnN1zzMXdIpZJzpQyoltrZd3YlLrG8oxBqbSEkrjNwma9vIr04GNvdnwyuw3ecKMx9VhXxALU%2B%2FhjE6yeq4WppYLt5ICEwxNpdn9Gw3mJTSe30cU0iCjLk5tLFTxclMW4l479JnnbXxVlsh2TkfvaBMaJ4XVXFIjpslMTnzhJCEQ%2BQn7dcYg0ihRz%2BvBeWq2OE1RewcxOqTkjctlUKY%2F0m8k9gHgEYPw59ymBp0vjd3184zS26RFDxETQYD5AzsjE3pBSH7Yjy4gTEI4Wsue1IhTv%2Fp%2BxCt5AnQ3Yp%2FjsIW0%2FoLUB7ACSoG4wymt90ft%2F32JBiwbbjMy3Rh9aQT3ELv7Gw1WttTsF5hb2P5%2FqoxhcJ%2BcPJ3Kp4sylJbngZwJU325%2Fbg4McmbfzVP6BTsLahwdfoYrVyVPYpSoeDIQ9pYzJO1ZZey%2BjZ%2F5j8ZnXTtSvDjmDL10yg%2BlTAmyKWClkXds7%2FBAV%2BH5xqTeMouOPVCe%2Bl8ZElH6AaDO%2BH9lKvxFbKGghtwelbx99m735V%2B5D%2BxS3eNtckd2KsOujOR3UPYs1DLUQQTl0VuNGzfHIn%2BO8MCIDCZXyapeb%2BqpC7C3OcrmGx%2FhacugW%2BFsmJPsrcw0nGpxvDocHxxx%2FNWFyGzcv8b7czEWwz3%2FcNp%2BFs%2BpxGpJdWtzGV4f0O%2B%2BMbxZ%2F5ozBniqaM0dcreb9%2BFz%2BXDjSlADVRPf6jmwl5uInHyNcbtGVyX0a5N%2BysjaAI8fRlK5r%2Bg63FlsYSu2wFaxhR%2Ba66oFEhQ4%2FI24WG55RQs1muMIExtP2VoBy%2BNWBLLw4lJd5l0Df2MOVugV3hANs%2Be0wgqp1HjgOZX9g5RXsDovFrswWqFjeQ%2B3jJC4aVbOc0qfq9hTMal%2F8Tdjy%2FaTFDOVJt76SHoDir9zEkK97ZpAmviPqBfuJSnB%2BrDzu3mNE1Lt8Lp%2BkEX0xKx7MsTBXjVrc0TrnLRul6VHVjpDoHf2CiMpcteOooLveGofQy7fKC4VY%2FdRXEfTPtmOAI7jYtLGHSNp1OFF1Ojv1m3m%2FqyxAeUmfzaNd9uivDxxeaDeBvNxM78a5XHQFsDCnd0ciDZTGdhQYC2G6kT%2BawcQsC6ze%2F65WnM5uETmDU%2Fhv8FzTKsZMJyMS5S9DWjcSeO%2FtqAtSSFbXqHaY8PjdaTVVBFAA3JJi6nL2vYZK7i1pwVRF3qUiNMUVPll2CfkBPPCWx8fr89SkL8Ep%2BZI2TFIMQh6DeG%2FgvA%2Bk4%2FRX4ylSqOnKFYawW4DcTeU1uAsHUtUCFfyOMVk7DfKM3Se0ihr1j2f6CcQfo8N7wnITbwpcaLTMhZc%2BgeCw1tPalYp4FOTm9kfbgcn%2BYMKsyWrYvL2pihpUd0EV8gbsQaltAtfkA3jB9bxrvEJ1m7qivgWTnD216ThlamBDeL
                                 //'request_code='++'&behavior=&fingerprint=undefined&_token=&'//
                                 //body: 'request_code=ce449b070884450fbaa47ce3a36e65c2&behavior=3AVMHkMNm7pb5ZYhRCb%2BX170f5oTto3KVQ4kndAr3wb6G5OFBNMc91DVW9mFU6d4KTrGi1FGQxv1Tq33%2BeVIcKs%2BrkSqfY23Ke8EjQz7EJ2c8g%2BloXw4b%2BLgL2XsaSRS17fzMa8OCGI4lj4ecY0nHISd7VSC2E2MEClylW6fAxyjofpJBASFjKdRHgvX9X8Df%2BS4LT7%2BlRdmP9kdRYJfHeeoXT7vgJCDaHFTwF720XHcYetqIzrrKdBU4ZkdyjLYy6jxEY04aD1RVxSnw6wXrqRuayOBFcZJ%2BPW%2BR5DkTZt3%2FyPUmPo94u7t93JylDW3&fingerprint=undefined&_token=9rrJjBrcshsm%2F5LvxnIDr6D%2F%2BGp1eBC4BklN9ZThYXz0k7R173IW9tujm9iCgwGbmeuIet3gn8h6OJh1FDkyHDJE1VgMa3aGK7sF5l70KUhFlZ7D2UYgOiqWI3MADo%2B1ALcsIZSf6TtNjYBnK2XarNPbUe1KDtFBwp7J36DFR%2F1Z6N9%2Frmfps3jQ1iwpAyLBdaBPkmII50Ts1GxhgSG3u0xnzsaOPF9wF%2F7BluiZziYAQz%2BJQyOqeIJVU5kTvfmEF9Wzzd4U9RWnRsq5artLEO4WesN22VPwqL0a6xlSwBdPKw6jqf%2BRv5Pb89RvUILtJTVkVqZxLgMKsYAb3yeq8e1%2BWjUW5%2B7CvdtCsfeT4o57ONTuOY6BEQ%2BYH2DcLwFgc18qxVpSE1VPC6PMrwPJFJbW092vKE8BgZ%2F66bSus3y0imyruqcJEhoUq5q0V48QgdRX7AfQeNST1Gc%2BwuL%2FUsTSxHTjYYZ9he4lg%2BJq21HO1OSCkuhp8jWQ6Ffe4Y98a0q9IX07yMIDVAqDo1hkSNK%2B3b%2Brq41WoAJQQA%2FgmzUvupZT6DOtiq05A1O6PYSZiTq0gYrSFvXJ7fNZPkbLrzv%2FCR%2BUUUZYNfDlm8PsxkfBF6VCoEjTrOMFzGQMFPdY7gZe1j4tSBGHp1Mt7a8HIAFO4psAEBgy2LseLwVf5%2FhOz%2FwbQJM66eZxrUVwaD9I2XpPlmACEMj%2FeczB%2FzKcbq420gGf10QQKMf4klq48U1rXl3dCcuv4bWSMvN6QD3By2R2LjcBoORCKWPCfyHLeSOhUG%2FtaaBp6g91gwtVaFbjzqiFplijvbB3HcsrgqO2ZZA3Rqrlwk%2F7Nq3UzjgmI4cz2NCXq4T3CMIa%2Fn88oAsHpowhC7qQ097EHJfKt6EQnR8E2ue1oY40XIo6FY0dTbFn6M%2BCXZOVJe9nRp0iOpym2JEE5bQZWQ9wH9DS4h85BvKpL69dw5P3Ctq4I87udO1OoIb5UqGgRm6Tvx6huz4ErxrXvsydvU%2FRp8YRdlmPqv0K9pRqLYi7kXMc1faF1%2FUGWAxDBAlldZVsbANUtWuxtgVAPhNJ1IPKwUkcjBTr%2BcjCjUcN3KegRAEO7jbmstd3Z0Ij%2FIsq4V0KjbNDyMuXnrrlxXgE8sCgEm1x5M7dnxFWrbKMC3j8zJCsFwcFb8peIa6Z0d8ERFTwHJ9%2B%2FrGycTMp421buV%2B2eDZEQBcITEjRaMTm2j6ub5UwDhAUIu87lweAx1fkPuFz6IySTD5SB9f3w%2FBbD3OXOGSI%2BDDDmLatBqhfzMmkPu4DPDMP%2B8HXqvefz5g2EIIIU%2Bm0KvJgp5Go2YU9LMMO4TXP36eOyGlA%2FfIol91cKPLC7oMQzcf7tWmFcaHP5gOwbXqmzXYOCAUy5HRhtxW9ZT0BW01Vpmclumt4jM%2BaIoYYNUH1DL2b4YDK1YBn%2B3f8zCABG8iORoN97%2FlysXSJs8Gx4rwkupIcLnQz2xVz%2FA5oZoXCfp0BK7JxGGScCZorMmfXew4hhR6z0%2B6UDJuyiSOMPTobXtD97G0vAuhDvVfGN6DTsN4iqUSRAckD3ha%2B22S7FWgjgBWBCghnRVG0OMktbcqWLyGuBR4vbQNme3ff5EoffYWgsxgVM3Ou&'
-                                body:'request_code='+item.requestCode+'&behavior='+encodeURIComponent(item.behavior)+'&fingerprint=&_token='+encodeURIComponent(item._token)+'&'
+                                body: 'request_code=' + item.requestCode + '&behavior=' + encodeURIComponent(item.behavior) + '&fingerprint=&_token=' + encodeURIComponent(item._token) + '&'
                             }, (err, res, body) => {
                                 console.log(body)
-                                if(err){
+                                if (err) {
                                     console.log({
                                         err,
                                         msg: '滑块失败(网络问题)'
                                     })
-                                }else{
+                                } else {
                                     try {
-                                        if(body.data.response_code.length < 1){
+                                        if (body.data.response_code.length < 1) {
                                             console.log({
                                                 err,
                                                 msg: '滑块失败'
@@ -1152,7 +1182,7 @@
                                             console.log(res)
                                             resolve(res)
                                         })
-                                    }catch (e) {
+                                    } catch (e) {
                                         console.log({
                                             err,
                                             msg: '滑块失败'
@@ -1165,7 +1195,7 @@
                                 }
                             })
                         })
-                    }catch (e) {
+                    } catch (e) {
                         console.log(e)
                         resolve({
                             err,
@@ -1176,7 +1206,7 @@
 
                 })//不用管sendMsg//不用管sendMsg
             },//滑块验证，并且获取uuid
-            _mobileVerifySend(traceIndex){
+            _mobileVerifySend(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex]
                 return new Promise(resolve => {
@@ -1194,18 +1224,18 @@
                             'Referer': 'https://account.dianping.com/account/iframeLogin?callback=EasyLogin_frame_callback0&wide=false&protocol=https:&redir=http%3A%2F%2Fwww.dianping.com%2F',
                             'Accept-Language': 'zh-CN,zh;q=0.9',
                         },
-                        body: 'mobileNo='+item.phoneNum+'&uuid='+item.uuid+'&type=304&countrycode=86',
+                        body: 'mobileNo=' + item.phoneNum + '&uuid=' + item.uuid + '&type=304&countrycode=86',
                     }, (err, res, body) => {
-                        console.log('mobileNo='+item.phoneNum+'&uuid='+item.uuid+'&type=304&countrycode=86')
+                        console.log('mobileNo=' + item.phoneNum + '&uuid=' + item.uuid + '&type=304&countrycode=86')
                         try {
-                            if(err){
+                            if (err) {
                                 resolve({
                                     err: 1
                                 })
-                            }else{
+                            } else {
                                 resolve(body)
                             }
-                        }catch (e) {
+                        } catch (e) {
                             resolve({
                                 err: 1
                             })
@@ -1215,7 +1245,7 @@
 
 
             },//发送验证码
-            _getSeedConfig(traceIndex){
+            _getSeedConfig(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex];
                 return new Promise(resolve => {
@@ -1234,18 +1264,18 @@
                             'Referer': 'https://maccount.dianping.com/login?redir=https%3A%2F%2Fm.dianping.com%2Fnmy%2Fmyinfo',
                             'Accept-Language': 'zh-CN,zh;q=0.9',
                         },
-                        body: 'requestCode='+item.requestCode+'&feVersion=1.4.0&source=1',
+                        body: 'requestCode=' + item.requestCode + '&feVersion=1.4.0&source=1',
                         json: true
                     }, (err, res, body) => {
                         console.log(body)
 
-                        try{
-                           that.traceList[traceIndex].seedConfig = body.data;
-                            that.traceList[traceIndex].seedConfig.f = "OTYwNDM4NjUz";
+                        try {
+                            that.traceList[traceIndex].seedConfig = body.data;
+                            that.traceList[traceIndex].seedConfig.f = "LTQ5NTY0ODc5OQ==";
                             resolve({
                                 err: 0
                             })
-                        }catch (e) {
+                        } catch (e) {
                             resolve({
                                 err: 1
                             })
@@ -1255,24 +1285,24 @@
                 })//不用管sendMsg
             },//获取page信息
 
-            _log(traceIndex, res){
+            _log(traceIndex, res) {
                 console.log(res)
                 try {
                     this.traceList[traceIndex].errMsg = res;
                     this.userList[this.traceList[traceIndex].id].errMsg = res;
                     this.showM = !this.showM;
-                }catch (e) {
+                } catch (e) {
                     console.log(e)
                 }
             },
-            DZLogin(traceIndex){
+            DZLogin(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex]
                 return new Promise(resolve => {
                     request.post({
                         proxy: that.traceList[traceIndex].proxy,
                         url: 'https://account.dianping.com/account/ajax/mfastlogin',
-                        body: 'mobile='+item.phoneNum+'&vcode='+item.vCode+'&channel=0&countrycode=86&type=304&keepMobile=off&_token='+item.token,
+                        body: 'mobile=' + item.phoneNum + '&vcode=' + item.vCode + '&channel=0&countrycode=86&type=304&keepMobile=off&_token=' + item.token,
                         headers: {
                             'Host': 'account.dianping.com',
                             'Connection': 'keep-alive',
@@ -1307,18 +1337,18 @@
                             jar: that.traceList[traceIndex].jar,
                         }, (err) => {
                             //+ ';_lxsdk=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8; _lxsdk_cuid=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8; _lxsdk_s=16a3a210ea9-e2f-c0f-432%7C%7C12;'
-                            that.traceList[traceIndex].jar.setCookie('_lxsdk=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8;',"https://account.dianping.com") 
-                            that.traceList[traceIndex].jar.setCookie('_lxsdk_cuid=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8;',"https://account.dianping.com") 
-                            that.traceList[traceIndex].jar.setCookie(' _lxsdk_s=16a3a210ea9-e2f-c0f-432%7C%7C12;',"https://account.dianping.com") 
+                            that.traceList[traceIndex].jar.setCookie('_lxsdk=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8;', "https://account.dianping.com")
+                            that.traceList[traceIndex].jar.setCookie('_lxsdk_cuid=16a39fa0c55c8-0a4c8f439d90fa-3c604504-1fa400-16a39fa0c55c8;', "https://account.dianping.com")
+                            that.traceList[traceIndex].jar.setCookie(' _lxsdk_s=16a3a210ea9-e2f-c0f-432%7C%7C12;', "https://account.dianping.com")
                             that.traceList[traceIndex].cookie = that.traceList[traceIndex].jar.getCookieString("https://account.dianping.com")
                             that.userList[that.traceList[traceIndex].id].cookie = that.traceList[traceIndex].jar.getCookieString("https://account.dianping.com")
                             //code: 200, msg: {…}}
                             //Zepto1555269113000({"code":403,"msg":"不符合预约条件"})
-                            try{
-                                if(body.code == 200){
+                            try {
+                                if (body.code == 200) {
                                     that.userList[that.traceList[traceIndex].id].loginStatus = '登录成功'
                                     that._log(traceIndex, '登录成功,延时...4s')
-                                    if(that.userList.length > that.loginAllNumber){
+                                    if (that.userList.length > that.loginAllNumber) {
                                         that.showMessageBox({
                                             type: "warning",
                                             butttons: ['确定'],
@@ -1327,12 +1357,12 @@
                                         })
                                         return
                                     }
-                                    setTimeout(function(){
+                                    setTimeout(function () {
                                         resolve(body)
                                     }, 4000)
                                 }
                                 resolve(body)
-                            }catch (e) {
+                            } catch (e) {
                                 console.log(e)
                                 resolve(body)
                             }
@@ -1343,19 +1373,19 @@
                     })
                 })//点评登录
             },
-            _checkPsw(traceIndex){
+            _checkPsw(traceIndex) {
                 let that = this;
                 let item = this.traceList[traceIndex]
 
                 let encPsw = getPswEnc(this.DZpsw, item.publicKey);
                 let url = 'https://account.dianping.com/account/ajax/passwordLogin';
-                let body="?countrycode=86&username="+item.phoneNum+"&keepLogin=on&encryptPassword="+encPsw;
-                let _token = enc.fuckToken(url+body, true)
+                let body = "?countrycode=86&username=" + item.phoneNum + "&keepLogin=on&encryptPassword=" + encPsw;
+                let _token = enc.fuckToken(url + body, true)
                 return new Promise(resolve => {
                     request.post({
-                       // n.encrypt((0, r.default)([t.password, t.uuid]))
+                        // n.encrypt((0, r.default)([t.password, t.uuid]))
                         url,
-                        body: 'countrycode=86&username='+item.phoneNum+'&keepLogin=on&encryptPassword='+encodeURIComponent(encPsw)+'&_token='+encodeURIComponent(_token),
+                        body: 'countrycode=86&username=' + item.phoneNum + '&keepLogin=on&encryptPassword=' + encodeURIComponent(encPsw) + '&_token=' + encodeURIComponent(_token),
                         headers: {
                             'Host': 'account.dianping.com',
                             'Connection': 'keep-alive',
@@ -1376,7 +1406,7 @@
                     })
                 })
             },
-            DZloginByUser(userIndex){
+            DZloginByUser(userIndex) {
                 let that = this;
                 that.traceList.push(this.traceInit());
                 let traceIndex = that.traceList.length - 1;
@@ -1384,23 +1414,23 @@
                 that._checkRisk(traceIndex).then(res => {
                     console.log(res)
                     //that._slideBlockAuth(traceIndex).then(res => {
-                       // console.log(res)
-                        //that._verify(traceIndex).then(res => {
-                          //  console.log(res)
-                            that._checkPsw(traceIndex)
-                       // })
+                    // console.log(res)
+                    //that._verify(traceIndex).then(res => {
+                    //  console.log(res)
+                    that._checkPsw(traceIndex)
+                    // })
                     //})
                 })
             },
-            _DZregister(traceIndex){
+            _DZregister(traceIndex) {
                 let that = this;
                 let item = this.traceList[traceIndex];
                 let encPsw = getPswEnc(this.DZpsw, item.publicKey);
-                let body = 'mobile='+item.phoneNum+'&vcode='+item.vCode+'&encryptPassword='+encPsw+'&countrycode=86&channel=15'
+                let body = 'mobile=' + item.phoneNum + '&vcode=' + item.vCode + '&encryptPassword=' + encPsw + '&countrycode=86&channel=15'
                 let url = 'https://account.dianping.com/account/ajax/regNewMobileRegister';
                 let _token = enc.fuckToken(url + '?' + body, true)
 
-                body = 'mobile='+item.phoneNum+'&vcode='+item.vCode+'&encryptPassword='+encodeURIComponent(encPsw)+'&countrycode=86&channel=15&_token='+encodeURIComponent(_token);
+                body = 'mobile=' + item.phoneNum + '&vcode=' + item.vCode + '&encryptPassword=' + encodeURIComponent(encPsw) + '&countrycode=86&channel=15&_token=' + encodeURIComponent(_token);
 
 
 
@@ -1431,12 +1461,12 @@
                         that.userList[that.traceList[traceIndex].id].cookie = that.traceList[traceIndex].jar.getCookieString("https://account.dianping.com")
                         //code: 200, msg: {…}}
                         //Zepto1555269113000({"code":403,"msg":"不符合预约条件"})
-                        try{
-                            if(body1.code == 200){
+                        try {
+                            if (body1.code == 200) {
                                 that.traceList[traceIndex].psw = that.DZpsw
                                 that.userList[that.traceList[traceIndex].id].psw = that.DZpsw
                                 that.userList[that.traceList[traceIndex].id].loginStatus = '登录成功'
-                                if(that.userList.length > that.loginAllNumber){
+                                if (that.userList.length > that.loginAllNumber) {
                                     that.showMessageBox({
                                         type: "warning",
                                         butttons: ['确定'],
@@ -1446,7 +1476,7 @@
                                     return
                                 }
                             }
-                        }catch (e) {
+                        } catch (e) {
                             console.log(e)
                         }
                         resolve(body)
@@ -1456,8 +1486,8 @@
             showMessageBox(arg) {
                 ipcRenderer.sendSync('massageBox', arg)
             },
-            DZRunByUserList(userIndex, firstStartFlag){
-                if(userIndex < 0){
+            DZRunByUserList(userIndex, firstStartFlag) {
+                if (userIndex < 0) {
                     this.showMessageBox({
                         type: "warning",
                         butttons: ['确定'],
@@ -1467,7 +1497,7 @@
                     return
                 }
                 let that = this;
-                if(!this.stopFlag && firstStartFlag){
+                if (!this.stopFlag && firstStartFlag) {
                     this.showMessageBox({
                         type: "warning",
                         butttons: ['确定'],
@@ -1476,7 +1506,7 @@
                     })
                     return
                 }
-                if(firstStartFlag){
+                if (firstStartFlag) {
 
                     this.stopFlag = false;
 
@@ -1488,7 +1518,7 @@
                 let traceIndex = this.traceList.length - 1;
 
 
-                if(traceIndex < 0){
+                if (traceIndex < 0) {
                     this.showMessageBox({
                         type: "warning",
                         butttons: ['确定'],
@@ -1498,7 +1528,7 @@
                     return
                 }
 
-                if(this.stopFlag){
+                if (this.stopFlag) {
                     this.traceList[traceIndex].errMsg = '已停止'
                     this.showMessageBox({
                         type: "warning",
@@ -1509,7 +1539,7 @@
                     return
                 }
                 console.log(userIndex)
-                if(userIndex > this.userList.length - 1){
+                if (userIndex > this.userList.length - 1) {
                     this.traceList[traceIndex].errMsg = '已停止'
                     this.stopFlag = true;
                     this.showMessageBox({
@@ -1521,7 +1551,7 @@
                     return
                 }
 
-                if((that.favorNum >= that.favorAllNumber) && that.favorFlag){
+                if ((that.favorNum >= that.favorAllNumber) && that.favorFlag) {
                     this.traceList[traceIndex].errMsg = '已停止'
                     this.stopFlag = true;
                     this.showMessageBox({
@@ -1532,7 +1562,7 @@
                     })
                     return
                 }
-                if((that.flowerNum >= that.flowerAllNumber) && that.flowerFlag){
+                if ((that.flowerNum >= that.flowerAllNumber) && that.flowerFlag) {
                     this.traceList[traceIndex].errMsg = '已停止'
                     this.stopFlag = true;
                     this.showMessageBox({
@@ -1544,7 +1574,7 @@
                     return
                 }
 
-                if((that.orderNum >= that.orderAllNumber) && that.orderFlag){
+                if ((that.orderNum >= that.orderAllNumber) && that.orderFlag) {
                     this.traceList[traceIndex].errMsg = '已停止'
                     this.stopFlag = true;
                     this.showMessageBox({
@@ -1559,27 +1589,30 @@
 
                 that.selectUser(userIndex);
                 let funProxy;
-                if(that.proxyFlag){
+                if (that.proxyFlag) {
                     funProxy = that.changeProxyNow;
-                }else{
+                } else {
                     funProxy = that.funDelay;
                     that.proxy = ''
                 }
 
                 funProxy(traceIndex).then(res => {
-                    that.traceList[traceIndex].errMsg = '第['+eval(userIndex+1)+']个正在进行预约操作.'
+                    that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个正在进行预约操作.'
                     this.DZFavorByUser(userIndex).then(res => {
-                        that.traceList[traceIndex].errMsg = '第['+eval(userIndex+1)+']个正在进行收藏操作.'
-                        that.DZOrderByUser(userIndex).then(res=>{
-                            that.traceList[traceIndex].errMsg = '第['+eval(userIndex+1)+']个正在进行菜品点赞操作.'
+                        that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个正在进行收藏操作.'
+                        that.DZOrderByUser(userIndex).then(res => {
+                            that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个正在进行菜品点赞操作.'
                             that.DZAddFlowerByUser(userIndex).then(res => {
-                                that.traceList[traceIndex].errMsg = '第['+eval(userIndex+1)+']个正在进行老师收藏操作'
-                                that.DZAddVoteByUser(userIndex).then(res => {
-                                    that.traceList[traceIndex].errMsg = '第['+eval(userIndex+1)+']个已完成.延时...2s'
-                                    setTimeout(function(){
-                                        userIndex+=1;
-                                        that.DZRunByUserList(userIndex,false)
-                                    }, 2000)
+                                that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个正在进行回答点赞'
+                                that.DZAddAnswerLikeByUser(userIndex).then(res => {
+                                    that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个正在进行老师收藏操作'
+                                    that.DZAddVoteByUser(userIndex).then(res => {
+                                        that.traceList[traceIndex].errMsg = '第[' + eval(userIndex + 1) + ']个已完成.延时...2s'
+                                        setTimeout(function () {
+                                            userIndex += 1;
+                                            that.DZRunByUserList(userIndex, false)
+                                        }, 2000)
+                                    })
                                 })
                             })
                         })
@@ -1592,11 +1625,11 @@
 
 
             },
-            DZAddFlowerByUser(userIndex){
+            DZAddAnswerLikeByUser(userIndex) {
                 var that = this;
                 let item = this.userList[userIndex]
                 return new Promise(resolve => {
-                    if(!that.flowerFlag){
+                    if (!that.answerFlag) {
                         resolve({
                             err: 0,
                             msg: '跳过'
@@ -1604,57 +1637,128 @@
                         return
                     }
 
-                        let userId = Math.floor(Math.random()*1000000000);// '340045784';
-                        console.log(userId)
-                        request.post({
-                            proxy: that.proxy,
-                            //proxy: 'http://183.144.204.224:46517',
-                            url: 'https://m.dianping.com/isoapi/module',//+Date.parse(new Date()),
-                            headers: {
-                                'Host': 'm.dianping.com',
-                                'Connection': 'keep-alive',
-                                'Origin': 'https://m.dianping.com',
-                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
-                                'Content-Type': 'application/json',
-                                'Accept': '*/*',
-                                'Referer': 'https://m.dianping.com/shop/'+that.shopId+'/dish'+that.dishId,
-                                'Accept-Language': 'zh-CN,zh;q=0.9',
-
-                                'cookie': item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;'
-                            },
-                            body: '{"moduleInfoList":[{"moduleName":"baseinfo","query":{"type":"addFlower","userId":'+userId+',"shopId":"'+that.shopId+'","dishName":"'+that.dishName+'"}}],"pageEnName":"shopdish"}',
-                            //jar: item.jar,
-                        }, (err, res, body) => {
-                            console.log(body)
-                            console.log(item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;')
-                            var msgJson = JSON.parse(body)
-                            try{
-                                var code = msgJson.data.moduleInfoList[0].moduleData.code
-                                let selected = msgJson.data.moduleInfoList[0].moduleData.data.res
-                                console.log(code)
-                                console.log(selected)
-                                that.userList[userIndex].errMsg = JSON.stringify(msgJson.data.moduleInfoList[0].moduleData)
-                                if(code == '200' && selected){
-                                    if(!that.userList[userIndex].flowerNum){
-                                        that.userList[userIndex].flowerNum = 0
-                                    }
-                                    that.flowerNum += 1;
-                                    that.userList[userIndex].flowerNum += 1;
-                                    that.userList[userIndex].flowerStatus = '成功';
+                    let userId = Math.floor(Math.random() * 1000000000);// '340045784';
+                    console.log(userId)
+                    request.post({
+                        proxy: that.proxy,
+                        //proxy: 'http://183.144.204.224:46517',
+                        url: 'https://m.dianping.com/forum/question/ajax/addAnswerLike',
+                        headers: {
+                            'Host': 'm.dianping.com',
+                            'Connection': 'keep-alive',
+                            'Origin': 'https://m.dianping.com',
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+                            'Content-type': 'application/x-www-form-urlencoded',
+                            'Accept': '*/*',
+                            'Referer': 'https://m.dianping.com/forum/question/' + that.questionId + '/followdetail?followNoteId=' + that.answerId + '&followType=1&shopId=' + that.shopId,
+                            'Accept-Language': 'zh-CN,zh;q=0.9',
+                            'Accept-Encoding': 'deflate',
+                            'cookie': item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;'
+                        },
+                        body: 'questionId=' + that.questionId + '&answerId=' + that.answerId + '&token=&isLogin=true&cx='
+                        //jar: item.jar,
+                    }, (err, res, body) => {
+                        console.log(body)
+                        console.log(item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;')
+                        var msgJson = JSON.parse(body)
+                        try {
+                            var code = msgJson.data.moduleInfoList[0].moduleData.code
+                            let selected = msgJson.data.moduleInfoList[0].moduleData.data.res
+                            console.log(code)
+                            console.log(selected)
+                            that.userList[userIndex].errMsg = JSON.stringify(msgJson.data.moduleInfoList[0].moduleData)
+                            if (code == '200' && selected) {
+                                if (!that.userList[userIndex].flowerNum) {
+                                    that.userList[userIndex].flowerNum = 0
                                 }
-                            }catch(e){
-                                that.userList[userIndex].flowerStatus = '失败';
+                                that.flowerNum += 1;
+                                that.userList[userIndex].flowerNum += 1;
+                                that.userList[userIndex].flowerStatus = '成功';
                             }
+                        } catch (e) {
+                            that.userList[userIndex].flowerStatus = '失败';
+                        }
 
-                            resolve(body)
+                        resolve(body)
 
-                        })
+                    })
 
 
 
                 })//点评预约
             },
-            DZAddVoteByUser(userIndex){
+            DZAddFlowerByUser(userIndex) {
+                var that = this;
+                let item = this.userList[userIndex]
+                return new Promise(resolve => {
+                    if (!that.flowerFlag) {
+                        resolve({
+                            err: 0,
+                            msg: '跳过'
+                        })
+                        return
+                    }
+
+                    let userId = Math.floor(Math.random() * 1000000000);// '340045784';
+                    console.log(userId)
+                    request.post({
+                        proxy: that.proxy,
+                        //proxy: 'http://183.144.204.224:46517',
+                        url: 'https://m.dianping.com/isoapi/module',//+Date.parse(new Date()),
+                        headers: {
+
+
+
+
+
+
+                            'Pragma': 'no-cache',
+                            'Cache-Control': 'no-cache',
+                            'Accept-Encoding': 'deflate',
+                            'Host': 'm.dianping.com',
+                            'Connection': 'keep-alive',
+                            'Origin': 'https://m.dianping.com',
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+                            'Content-Type': 'application/json',
+                            'Accept': '*/*',
+                            'Referer': 'https://m.dianping.com/shop/' + that.shopId + '/dish' + that.dishId,
+                            'Accept-Language': 'zh-CN,zh;q=0.9',
+
+                            'cookie': item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;'
+                        },
+                        body: '{"moduleInfoList":[{"moduleName":"baseinfo","query":{"type":"addFlower","userId":' + userId + ',"shopId":"' + that.shopId + '","dishName":"' + that.dishName + '"}}],"pageEnName":"shopdish"}',
+                        //jar: item.jar,
+                    }, (err, res, body) => {
+                        console.log(body)
+                        console.log(item.cookie + ';_lx_utm=utm_source%3Dm_poi_meishi;')
+                        var msgJson = JSON.parse(body)
+                        try {
+                            var code = msgJson.data.moduleInfoList[0].moduleData.code
+                            let selected = msgJson.data.moduleInfoList[0].moduleData.data.res
+                            console.log(code)
+                            console.log(selected)
+                            that.userList[userIndex].errMsg = JSON.stringify(msgJson.data.moduleInfoList[0].moduleData)
+                            if (code == '200' && selected) {
+                                if (!that.userList[userIndex].flowerNum) {
+                                    that.userList[userIndex].flowerNum = 0
+                                }
+                                that.flowerNum += 1;
+                                that.userList[userIndex].flowerNum += 1;
+                                that.userList[userIndex].flowerStatus = '成功';
+                            }
+                        } catch (e) {
+                            that.userList[userIndex].flowerStatus = '失败';
+                        }
+
+                        resolve(body)
+
+                    })
+
+
+
+                })//点评预约
+            },
+            DZAddVoteByUser(userIndex) {
                 //老师点击收藏
                 var that = this;
                 let item = this.userList[userIndex]
@@ -1672,7 +1776,7 @@
                     request.get({
                         proxy: that.proxy,
                         //proxy: 'http://183.144.204.224:46517',
-                        url: 'https://m.dianping.com/education/addVote?personId='+voteId+'&source=dianping',//+Date.parse(new Date()),
+                        url: 'https://m.dianping.com/education/addVote?personId=' + voteId + '&source=dianping',//+Date.parse(new Date()),
                         headers: {
                             'Host': 'm.dianping.com',
                             'Connection': 'keep-alive',
@@ -1694,17 +1798,17 @@
                             var code = msgJson.code
 
                             that.userList[userIndex].errMsg = JSON.stringify(body)
-                            if(!that.userList[userIndex].voteNum){
+                            if (!that.userList[userIndex].voteNum) {
                                 that.userList[userIndex].voteNum = 0
                             }
                             if (code == '200') {
                                 that.voteNum += 1;
                                 that.userList[userIndex].voteNum += 1;
                                 that.userList[userIndex].voteStatus = '成功';
-                            }else{
-                                if(code == '202')
+                            } else {
+                                if (code == '202')
                                     that.userList[userIndex].voteStatus = '取消';
-                                else{
+                                else {
                                     that.userList[userIndex].voteStatus = '失败';
                                 }
                             }
@@ -1719,7 +1823,7 @@
                     })
                 })
             },
-            DZFavorByUser(userIndex){
+            DZFavorByUser(userIndex) {
                 //cy=84; cye=daqing; _lxsdk_cuid=16b58dec25fc8-04f32c1e2b375a-37c153e-144000-16b58dec25f45; _lxsdk=16b58dec25fc8-04f32c1e2b375a-37c153e-144000-16b58dec25f45; _hc.v=2a5376b9-cb57-cf2e-60aa-da256c2f9842.1560564122; ll=7fd06e815b796be3df069dec7836c3df; ua=dpuser_5905232438;  uamo=17724806779;
                 //my
                 //dper=599d81245a6e91141b1494f0b73795436516dfe52a1c70ac71f8b1c048f44abc4f91bc0f940463e7d39e9393796523b162a350fe6b3b3219101a9b20ce48590cdd621e8887b6449971b1cfe404a6dcd61f085d4fc16ad8acd99b29d0939896bc;
@@ -1732,7 +1836,7 @@
                 let item = this.userList[userIndex]
                 return new Promise(resolve => {
 
-                    if(!that.favorFlag){
+                    if (!that.favorFlag) {
                         resolve({
                             err: 0,
                             msg: '跳过'
@@ -1743,14 +1847,14 @@
                         proxy: that.proxy,
                         //proxy: 'http://183.144.204.224:46517',//jQuery34005526 _1559026117409
                         //    http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery341023049111056623595_1559026117409&referId=69719009&favorType=1&favorTags=&_=1559026117411
-                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34102304'+Date.parse(new Date())+'_'+Date.parse(new Date())+'&referId='+that.shopId+'&favorType=1&favorTags=&_='+Date.parse(new Date())+5,//+Date.parse(new Date()),
+                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34102304' + Date.parse(new Date()) + '_' + Date.parse(new Date()) + '&referId=' + that.shopId + '&favorType=1&favorTags=&_=' + Date.parse(new Date()) + 5,//+Date.parse(new Date()),
                         headers: {
                             'Host': 'www.dianping.com',
                             'Connection': 'keep-alive',
                             'Accept': 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
                             'X-Requested-With': 'XMLHttpRequest',
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
-                            'Referer': 'http://www.dianping.com/shop/'+that.shopId,
+                            'Referer': 'http://www.dianping.com/shop/' + that.shopId,
                             'Accept-Language': 'zh-CN,zh;q=0.9',
                             'cookie': item.cookie.split("_lxsdk=")[0]
                         },
@@ -1759,29 +1863,29 @@
                         json: true
                     }, (err, res, body) => {
                         console.log(body)
-                        var msgJson = that.getVcode(body,'(',')')
+                        var msgJson = that.getVcode(body, '(', ')')
                         console.log(msgJson)
-                        try{
+                        try {
                             var code = JSON.parse(msgJson).code
 
                             that.userList[userIndex].errMsg = body
-                            if(code == '200'){
+                            if (code == '200') {
                                 that.favorNowNum = 0;
                                 that.favorNum += 1;
                                 that.userList[userIndex].favorNum += 1;
                                 that.userList[userIndex].favorStatus = '成功';
-                            }else{
-                                if(that.favorNowNum < that.favorRepAllNum){
+                            } else {
+                                if (that.favorNowNum < that.favorRepAllNum) {
                                     that.favorNowNum += 1;
-                                    that.userList[userIndex].errMsg = '正在重试...'+that.favorNowNum+'次';
-                                    console.log('正在重试...'+that.favorNowNum+'次')
-                                    setTimeout(function(){
+                                    that.userList[userIndex].errMsg = '正在重试...' + that.favorNowNum + '次';
+                                    console.log('正在重试...' + that.favorNowNum + '次')
+                                    setTimeout(function () {
                                         that.DZFavorByUser(userIndex).then(res => {
                                             resolve(res)
                                         });
                                     }, 500)
                                     return
-                                }else{
+                                } else {
                                     that.favorNowNum = 0;
                                     resolve(body)
                                     return
@@ -1789,18 +1893,18 @@
                             }
                             resolve(body)
                             return
-                        }catch(e){
-                            if(that.favorNowNum < that.favorRepAllNum){
+                        } catch (e) {
+                            if (that.favorNowNum < that.favorRepAllNum) {
                                 that.favorNowNum += 1;
-                                that.userList[userIndex].errMsg = '正在重试...'+that.favorNowNum+'次';
-                                console.log('正在重试...'+that.favorNowNum+'次')
-                                setTimeout(function(){
+                                that.userList[userIndex].errMsg = '正在重试...' + that.favorNowNum + '次';
+                                console.log('正在重试...' + that.favorNowNum + '次')
+                                setTimeout(function () {
                                     that.DZFavorByUser(userIndex).then(res => {
                                         resolve(res)
                                     });
                                 }, 500)
                                 return
-                            }else{
+                            } else {
                                 that.favorNowNum = 0;
                                 resolve(body)
                                 return
@@ -1814,18 +1918,18 @@
                     })
                 })//点评预约
             },
-            DZOrderByUser(userIndex, orderIndex){
+            DZOrderByUser(userIndex, orderIndex) {
 
-                if(this.traceList.length < 1){
+                if (this.traceList.length < 1) {
                     this.traceList.push(this.traceInit())
                 }
-                if(!orderIndex){
+                if (!orderIndex) {
                     orderIndex = 0;//预定信息第一个
                 }
-                if(orderIndex >= this.orderAllNum){
+                if (orderIndex >= this.orderAllNum) {
                     orderIndex = 0;
                 }
-                if(orderIndex >= this.orderList.length){
+                if (orderIndex >= this.orderList.length) {
                     orderIndex = 0;
                 }
                 //dper=5e60337126a3d5da18408a02969ae380ec77c44aa66087fb02a81667ff0644276ec32f371657778f4a17d44e12db46fe846fc43a5b3bea08525753dd865caa31;
@@ -1835,17 +1939,17 @@
                 // uamo=18428326768
 
 
-//this.traceList[traceIndex].phoneNum = '15776501798';
+                //this.traceList[traceIndex].phoneNum = '15776501798';
                 var that = this;
                 var item = this.userList[userIndex];
                 let orderInfo;
-                try{
+                try {
                     orderInfo = {
                         orderData: that.orderList[orderIndex].orderData,
                         orderTime: that.orderList[orderIndex].orderTime,
                         orderContent: that.orderList[orderIndex].orderContent
                     }
-                }catch (e) {
+                } catch (e) {
                     orderInfo = {
                         orderData: that.orderList[0].orderData,
                         orderTime: that.orderList[0].orderTime,
@@ -1855,14 +1959,14 @@
                 console.log(orderInfo)
                 console.log(item.jar)
                 return new Promise(resolve => {
-                    if(that.stopFlag){
+                    if (that.stopFlag) {
                         resolve({
                             err: 1,
                             msg: 'stop'
                         })
                         return;
                     }
-                    if(!that.orderFlag){
+                    if (!that.orderFlag) {
                         resolve({
                             err: 0,
                             msg: '跳过'
@@ -1872,7 +1976,7 @@
                     request.get({
                         proxy: that.proxy,
                         //proxy: 'http://183.144.204.224:46517',
-                        url: 'http://m-api.dianping.com/vc/book/pc/order/add.jsonp?shopId='+that.shopId+'&phoneNo='+item.phoneNum+'&count=1&date='+orderInfo.orderData+'+'+encodeURIComponent(orderInfo.orderTime)+'&comment='+encodeURIComponent(orderInfo.orderContent)+'&captcha=&_='+Date.parse(new Date())+'&callback=Zepto'+Date.parse(new Date()),
+                        url: 'http://m-api.dianping.com/vc/book/pc/order/add.jsonp?shopId=' + that.shopId + '&phoneNo=' + item.phoneNum + '&count=1&date=' + orderInfo.orderData + '+' + encodeURIComponent(orderInfo.orderTime) + '&comment=' + encodeURIComponent(orderInfo.orderContent) + '&captcha=&_=' + Date.parse(new Date()) + '&callback=Zepto' + Date.parse(new Date()),
                         headers: {
                             //
                             /*
@@ -1915,7 +2019,7 @@
                             'Cache-Control': 'no-cache',
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                             'Accept': '*/*',
-                            'Referer': 'http://www.dianping.com/shop/'+that.shopId,
+                            'Referer': 'http://www.dianping.com/shop/' + that.shopId,
                             'Accept-Language': 'zh-CN,zh;q=0.9',
                             'cookie': item.cookie
                         },
@@ -1924,32 +2028,32 @@
                     }, (err, res, body) => {
                         console.log(err)
                         console.log(body)
-                        var code = that.getVcode(body,'code":',',"')
+                        var code = that.getVcode(body, 'code":', ',"')
 
                         that.userList[userIndex].errMsg = body
-                        if(code == '200'){
+                        if (code == '200') {
                             that.orderNum += 1;
                             that.userList[userIndex].orderNum += 1;
                             that.userList[userIndex].orderStatus = '成功';
                         }
                         try {
-                            if(body.indexOf('预约失败') != -1){
+                            if (body.indexOf('预约失败') != -1) {
                                 let time = that.orderList[orderIndex].orderTime;
                                 let times = time.split(':');
                                 let hour = eval(times[0]);
                                 hour += 2;
-                                if(hour > 24){
+                                if (hour > 24) {
                                     hour = 0;
                                 }
-                                hour=hour.toString();
-                                if(hour.length = 1){
-                                    hour = "0"+hour;
+                                hour = hour.toString();
+                                if (hour.length = 1) {
+                                    hour = "0" + hour;
                                 }
-                                that.orderList[orderIndex].orderTime = hour+":"+times[1];
+                                that.orderList[orderIndex].orderTime = hour + ":" + times[1];
                             }
-                            if(that.traceList[that.traceList.length - 1].orderNum < that.orderAllNum - 1){
-                                if(body.indexOf('不符合') != -1 && that.orderNowNum < that.orderRepAllNum){
-                                    setTimeout(function(){
+                            if (that.traceList[that.traceList.length - 1].orderNum < that.orderAllNum - 1) {
+                                if (body.indexOf('不符合') != -1 && that.orderNowNum < that.orderRepAllNum) {
+                                    setTimeout(function () {
                                         console.log('延时1s...')
                                         that.orderNowNum += 1;
                                         that.DZOrderByUser(userIndex, that.traceList[that.traceList.length - 1].orderNum).then(res => {
@@ -1958,7 +2062,7 @@
                                         return
                                     }, 1000);
                                     return
-                                }else{
+                                } else {
                                     that.orderNowNum = 0;
                                     that.traceList[that.traceList.length - 1].orderNum += 1;
                                     that.DZOrderByUser(userIndex, that.traceList[that.traceList.length - 1].orderNum).then(res => {
@@ -1966,10 +2070,10 @@
                                     })
                                     return
                                 }
-                            }else{
+                            } else {
                                 that.traceList[that.traceList.length - 1].orderNum = 0;
                             }
-                        }catch (e) {
+                        } catch (e) {
                             resolve(body)
                             return
                         }
@@ -1978,12 +2082,12 @@
                     })
                 })//点评预约
             },
-            DZOrder(traceIndex){
+            DZOrder(traceIndex) {
                 //this.traceList[traceIndex].phoneNum = '15776501798';
                 var that = this;
                 var item = this.traceList[traceIndex]
                 return new Promise(resolve => {
-                    if(!that.orderFlag){
+                    if (!that.orderFlag) {
                         resolve({
                             err: 0,
                             msg: '跳过'
@@ -1992,7 +2096,7 @@
                     }
                     request.get({
                         proxy: that.traceList[traceIndex].proxy,
-                        url: 'http://www.dianping.com/shop/'+that.shopId,
+                        url: 'http://www.dianping.com/shop/' + that.shopId,
                         headers: {
                             'Host': 'www.dianping.com',
                             'Connection': 'keep-alive',
@@ -2004,14 +2108,14 @@
                             'Accept-Encoding': 'deflate'
                         },
                         jar: that.traceList[traceIndex].jar
-                    },(err, res, body) => {
+                    }, (err, res, body) => {
                         that.traceList[traceIndex].cookie = that.traceList[traceIndex].jar.getCookieString("https://account.dianping.com")
                         that.userList[that.traceList[traceIndex].id].cookie = that.traceList[traceIndex].jar.getCookieString("https://account.dianping.com")
-                        that.traceList[traceIndex].jar.setCookie("cy=2;cityid=2;cye=beijing;","https://account.dianping.com")
+                        that.traceList[traceIndex].jar.setCookie("cy=2;cityid=2;cye=beijing;", "https://account.dianping.com")
                         request.get({
                             proxy: that.traceList[traceIndex].proxy,
                             //proxy: 'http://183.144.204.224:46517',
-                            url: 'http://m-api.dianping.com/vc/book/pc/order/add.jsonp?shopId='+that.shopId+'&phoneNo='+item.phoneNum+'&count=1&date='+that.orderData+'+'+encodeURIComponent(that.orderTime)+'&comment='+encodeURIComponent(that.orderContent)+'&captcha=&_='+Date.parse(new Date())+'&callback=Zepto1555644605085',//+Date.parse(new Date()),
+                            url: 'http://m-api.dianping.com/vc/book/pc/order/add.jsonp?shopId=' + that.shopId + '&phoneNo=' + item.phoneNum + '&count=1&date=' + that.orderData + '+' + encodeURIComponent(that.orderTime) + '&comment=' + encodeURIComponent(that.orderContent) + '&captcha=&_=' + Date.parse(new Date()) + '&callback=Zepto1555644605085',//+Date.parse(new Date()),
                             headers: {
                                 //
                                 /*
@@ -2054,7 +2158,7 @@
                                 'Cache-Control': 'no-cache',
                                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                                 'Accept': '*/*',
-                                'Referer': 'http://www.dianping.com/shop/'+that.shopId,
+                                'Referer': 'http://www.dianping.com/shop/' + that.shopId,
                                 'Accept-Language': 'zh-CN,zh;q=0.9',
                                 'cookie': that.userList[that.traceList[traceIndex].id].cookie
                             },
@@ -2063,23 +2167,23 @@
                             console.log(err)
                             console.log(body)
 
-                            var code = that.getVcode(body,'code":',',"')
+                            var code = that.getVcode(body, 'code":', ',"')
 
                             that.userList[that.traceList[traceIndex].id].errMsg = body
-                            if(code == '200'){
+                            if (code == '200') {
                                 that.orderNum += 1;
                                 that.userList[that.traceList[traceIndex].id].orderNum += 1;
                                 that.userList[that.traceList[traceIndex].id].orderStatus = '成功';
                             }
 
 
-                            if(item.orderNum < that.orderAllNum - 1){
+                            if (item.orderNum < that.orderAllNum - 1) {
                                 that.traceList[that.traceList.length - 1].orderNum += 1;
                                 that.DZOrder(traceIndex).then(res => {
                                     resolve(res)
                                 })
                                 return
-                            }else{
+                            } else {
                                 that.traceList[traceIndex].orderNum = 0;
                             }
                             resolve(body)
@@ -2090,14 +2194,15 @@
 
                 })//点评预约
             },
-            DZFavor(traceIndex){
+
+            DZFavor(traceIndex) {
 
                 //this.traceList[traceIndex].phoneNum = '15776501798';
                 var that = this;
                 var item = this.traceList[traceIndex]
                 var userIndex = item.id
                 return new Promise(resolve => {
-                    if(!that.favorFlag){
+                    if (!that.favorFlag) {
                         resolve({
                             err: 0,
                             msg: '跳过'
@@ -2107,38 +2212,38 @@
                     request.get({
                         proxy: that.traceList[traceIndex].proxy,
                         //proxy: 'http://183.144.204.224:46517',
-                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34005526426429745548_'+Date.parse(new Date())+'&referId='+that.shopId+'&favorType=1&favorTags=&_=1555750873284',//+Date.parse(new Date()),
+                        url: 'http://www.dianping.com/ajax/json/shopDynamic/addFavor?callback=jQuery34005526426429745548_' + Date.parse(new Date()) + '&referId=' + that.shopId + '&favorType=1&favorTags=&_=1555750873284',//+Date.parse(new Date()),
                         headers: {
                             'Host': 'www.dianping.com',
                             'Connection': 'keep-alive',
                             'Accept': 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01',
                             'X-Requested-With': 'XMLHttpRequest',
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
-                            'Referer': 'http://www.dianping.com/shop/'+that.shopId,
+                            'Referer': 'http://www.dianping.com/shop/' + that.shopId,
                             'Accept-Language': 'zh-CN,zh;q=0.9',
                             'cookie': that.userList[userIndex].cookie.split("_lxsdk=")[0]
                         },
-                        
+
                         json: true
                     }, (err, res, body) => {
-                        try{
+                        try {
                             console.log(body)
-                            var msgJson = that.getVcode(body,'(',')')
+                            var msgJson = that.getVcode(body, '(', ')')
                             console.log(msgJson)
-                            try{
+                            try {
                                 var code = JSON.parse(msgJson).code
 
                                 that.userList[userIndex].errMsg = body
-                                if(code == '200'){
+                                if (code == '200') {
                                     that.favorNum += 1;
                                     that.userList[userIndex].favorNum += 1;
                                     that.userList[userIndex].favorStatus = '成功';
                                 }
-                            }catch(e){
+                            } catch (e) {
                                 that.userList[userIndex].favorStatus = '失败';
                             }
                             resolve(body)
-                        }catch (e) {
+                        } catch (e) {
                             that.userList[userIndex].favorStatus = '失败';
                             console.log(e)
                             resolve({
@@ -2151,7 +2256,7 @@
 
 
             },
-            testIp(){
+            testIp() {
                 request.get({
                     url: 'https://www.ip.cn/',
                     proxy: 'http://117.26.228.194:36187',
@@ -2170,7 +2275,7 @@
                     console.log(body)
                 })
             },
-            _JMLogin(){
+            _JMLogin() {
                 var that = this;
                 /*
                 * 飞讯
@@ -2210,28 +2315,75 @@
                 * */
 
                 /*橙子*/
+                // return new Promise(resolve => {
+                //     request.get({
+                //         url: 'http://www.517orange.com:9000/devApi/loginIn?uid=' + that.JMuser + '&pwd=' + that.JMpsw,
+                //         json: true
+                //     }, (error, res, body) => {
+                //         try {
+                //             console.log(body)
+                //             let err, data, msg;
+                //             if (error) {
+                //                 err = 1;
+                //                 data = '';
+                //                 msg = '网络繁忙'
+                //             } else {
+                //                 if (body.Token.length > 3) {
+                //                     //设置token
+                //                     that.JMToken = body.Token
+                //                     that.JMUid = body.Uid
+                //                     that.JMBalance = body.Balance
+                //                     err = 0;
+                //                     data = body;
+                //                     msg = '登录成功'
+                //                 } else {
+                //                     err = 1;
+                //                     data = body;
+                //                     msg = '登录失败'
+                //                 }
+
+                //             }
+                //             resolve({
+                //                 err,
+                //                 data,
+                //                 msg
+                //             })
+                //         } catch (e) {
+                //             console.log(e)
+                //             resolve({
+                //                 err: 1,
+                //                 data: '',
+                //                 msg: '网络繁忙'
+                //             })
+                //         }
+
+                //     })
+                // })
+
+                /*信盒*/
                 return new Promise(resolve => {
                     request.get({
-                        url: 'http://www.517orange.com:9000/devApi/loginIn?uid='+that.JMuser+'&pwd='+that.JMpsw,
-                        json: true
+                        url: 'http://api.xinheyz.com/api/do.php?action=loginIn&name=' + that.JMuser + '&password=' + that.JMpsw,
+                        // json: true
                     }, (error, res, body) => {
-                        try{
+                        try {
                             console.log(body)
+                            let ress = body.split('|')
                             let err, data, msg;
-                            if(error){
+                            if (error || ress[0]) {
                                 err = 1;
                                 data = '';
-                                msg = '网络繁忙'
-                            }else{
-                                if(body.Token.length > 3){
+                                msg = ress[1] || '网络繁忙'
+                            } else {
+                                if (ress[1].length > 3) {
                                     //设置token
-                                    that.JMToken = body.Token
-                                    that.JMUid = body.Uid
-                                    that.JMBalance = body.Balance
+                                    that.JMToken = ress[1]
+                                    // that.JMUid = body.Uid
+                                    // that.JMBalance = body.Balance
                                     err = 0;
                                     data = body;
                                     msg = '登录成功'
-                                }else{
+                                } else {
                                     err = 1;
                                     data = body;
                                     msg = '登录失败'
@@ -2243,12 +2395,12 @@
                                 data,
                                 msg
                             })
-                        }catch (e) {
+                        } catch (e) {
                             console.log(e)
                             resolve({
-                                err : 1,
-                            data : '',
-                            msg :'网络繁忙'
+                                err: 1,
+                                data: '',
+                                msg: '网络繁忙'
                             })
                         }
 
@@ -2256,22 +2408,22 @@
                 })
 
             },
-            JMLogin(){
+            JMLogin() {
                 let that = this;
-              this._JMLogin().then(res => {
-                
+                this._JMLogin().then(res => {
+
                     console.log(res)
-                  if(res.data.length > 3){
-                    //that.JMToken = res.data;
-                    err = 0;
-                  }else{
-                    err = 1;
-                    msg="登录失败"
-                      
-                  }
-              })
+                    if (res.msg.length > 3) {
+                        that.JMToken = res.msg;
+                        err = 0;
+                    } else {
+                        err = 1;
+                        msg = "登录失败"
+
+                    }
+                })
             },
-            _JMGetPhone(){
+            _JMGetPhone() {
                 var that = this;
                 /*
                 * 飞讯
@@ -2315,29 +2467,70 @@
 
                 //橙子
 
+                // return new Promise(resolve => {
+                //     request.get({
+                //         url: 'http://www.517orange.com:9000/devApi/getMobilenum?uid=' + that.JMUid + '&pid=' + that.xmid + '&token=' + that.JMToken,
+                //         timeout: 5000,
+                //     }, (err, res, body) => {
+                //         //console.log('http://119.23.57.40:9180/service.asmx/GetHM2Str?token='+that.JMToken+'&xmid='+that.xmid+'&sl=1&lx=0&a1=&a2=&pk=&ks=&rj=')
+                //         try {
+                //             console.log(body.toString())
+                //             if (err) {
+                //                 resolve({
+                //                     err: 1,
+                //                     msg: '获取号码错误'
+                //                 })
+                //                 return
+                //             } else {
+                //                 if (body == 'no_data') {
+                //                     resolve({
+                //                         err: 1,
+                //                         msg: body
+                //                     })
+                //                     return
+                //                 }
+                //                 if (body.indexOf('余额不足') != -1) {
+                //                     resolve({
+                //                         err: 1,
+                //                         msg: body
+                //                     })
+                //                     return
+                //                 }
+                //                 resolve({
+                //                     err: 0,
+                //                     phoneNum: body
+                //                 })
+                //                 return
+                //             }
+                //         } catch (e) {
+                //             console.log(e)
+                //             resolve({
+                //                 err: 1,
+                //                 msg: "网络错误"
+                //             })
+                //         }
+                //     })
+                // })
+
+                //信盒
+
                 return new Promise(resolve => {
                     request.get({
-                        url: 'http://www.517orange.com:9000/devApi/getMobilenum?uid='+that.JMUid+'&pid='+that.xmid+'&token='+that.JMToken,
+                        url: 'http://api.xinheyz.com/api/do.php?' + (that.provinceFlag ? 'locationMatching=include&locationLevel=p&location=' + encodeURIComponent(that.province) + '&' : '') + 'action=getPhone&sid=' + that.xmid + '&token=' + that.JMToken + (that.xnFlag ? '' : '&vno=0'),
                         timeout: 5000,
-                    },(err, res, body) => {
+                    }, (err, res, body) => {
                         //console.log('http://119.23.57.40:9180/service.asmx/GetHM2Str?token='+that.JMToken+'&xmid='+that.xmid+'&sl=1&lx=0&a1=&a2=&pk=&ks=&rj=')
-                        try{
+                        try {
                             console.log(body.toString())
-                            if(err){
+                            let ress = body.split('|')
+                            if (err) {
                                 resolve({
                                     err: 1,
                                     msg: '获取号码错误'
                                 })
                                 return
-                            }else{
-                                if(body == 'no_data'){
-                                    resolve({
-                                        err: 1,
-                                        msg: body
-                                    })
-                                    return
-                                }
-                                if(body.indexOf('余额不足') != -1){
+                            } else {
+                                if (ress[0] == '0') {
                                     resolve({
                                         err: 1,
                                         msg: body
@@ -2346,11 +2539,11 @@
                                 }
                                 resolve({
                                     err: 0,
-                                    phoneNum: body
+                                    phoneNum: ress[1]
                                 })
                                 return
                             }
-                        }catch (e) {
+                        } catch (e) {
                             console.log(e)
                             resolve({
                                 err: 1,
@@ -2361,13 +2554,13 @@
                 })
 
             },
-            JMGetMsg(traceIndex){
+            JMGetMsg(traceIndex) {
                 //console.log("asd")
                 var that = this;
                 var item = this.traceList[traceIndex];
                 var userIndex = item.id;
                 return new Promise(resolve => {
-                    if(that.stopFlag){
+                    if (that.stopFlag) {
                         resolve({
                             err: 1,
                             msg: '已停止'
@@ -2375,24 +2568,26 @@
                         return
                     }
                     this.traceList[traceIndex].delayNowTimes += 1;
-                    if(this.traceList[traceIndex].delayNowTimes >= this.traceList[traceIndex].delayAllTimes){
-
+                    if (this.traceList[traceIndex].delayNowTimes >= this.traceList[traceIndex].delayAllTimes) {
+                        request.get({
+                            url: 'http://api.xinheyz.com/api/do.php?action=addBlacklist&sid=' + this.xmid + '&phone=' + item.phoneNum + '&token=' + this.JMToken
+                        })
                         resolve({
-                            err:1,
+                            err: 1,
                             msg: '获取验证码失败'
                         })
                         return
                     }
 
 
-                    if(item.delayNow <= 0){
+                    if (item.delayNow <= 0) {
                         that.traceList[traceIndex].delayNow = item.delayAll
-                    }else{
+                    } else {
                         that.traceList[traceIndex].delayNow += -1;
-                        that.traceList[traceIndex].errMsg = '正在获取验证码...'+that.traceList[traceIndex].delayNow+'s';
-                        that.userList[item.id].errMsg = '正在获取验证码...'+that.traceList[traceIndex].delayNow+'s';
+                        that.traceList[traceIndex].errMsg = '正在获取验证码...' + that.traceList[traceIndex].delayNow + 's';
+                        that.userList[item.id].errMsg = '正在获取验证码...' + that.traceList[traceIndex].delayNow + 's';
                         this.showM = !this.showM;
-                        setTimeout(function(){
+                        setTimeout(function () {
                             that.JMGetMsg(traceIndex).then(res => {
                                 resolve(res)
                             })
@@ -2400,8 +2595,9 @@
                         return
                     }
                     that._JMGetMsg(item.phoneNum).then(res => {
-                        try{
+                        try {
                             console.log(res)
+                            let ress = res.split('|')
                             /*
                                                     * 飞讯
                                                     *if(res=="1"){
@@ -2423,29 +2619,34 @@
                                                     }
                                                     * 飞讯
                                                     * */
-                            if(!res || res=="no_data"){
-                                console.log(res)
-                                setTimeout(function(){
+
+
+
+
+
+                            if (!res || ress[0] == "0") {
+                                console.log(ress[1])
+                                setTimeout(function () {
                                     that.JMGetMsg(traceIndex).then(res => {
                                         resolve(res)
                                     })
                                 }, 1000)
                                 return
-                            }else{
+                            } else {
                                 console.log(res)
-                                if(res.length > 8){
+                                if (ress[1].length > 8) {
                                     resolve({
                                         err: 0,
-                                        msg: res
+                                        msg: ress[1]
                                     })
-                                }else{
+                                } else {
                                     resolve({
                                         err: 1,
                                         msg: res
                                     })
                                 }
                             }
-                        }catch (e) {
+                        } catch (e) {
                             console.log(e)
                             resolve({
                                 err: 1,
@@ -2459,7 +2660,7 @@
 
                 })
             },
-            _JMGetMsg(phoneNum){
+            _JMGetMsg(phoneNum) {
                 console.log('正在获取')
                 let that = this;
                 /*
@@ -2475,25 +2676,36 @@
                 * 飞讯
                 * */
                 //橙子
+                // return new Promise(resolve => {
+                //     request.get({
+                //         url: 'http://www.517orange.com:9000/devApi/getVcodeAndReleaseMobile?uid=' + that.JMUid + '&pid=' + that.xmid + '&mobile=' + phoneNum + '&token=' + that.JMToken,
+                //         timeout: 5000
+                //     }, (err, res, body) => {
+                //         //that._log(body)
+                //         console.log("正在获取" + body)
+                //         resolve(body)
+                //     })
+                // })
+                //信盒
                 return new Promise(resolve => {
                     request.get({
-                        url: 'http://www.517orange.com:9000/devApi/getVcodeAndReleaseMobile?uid='+that.JMUid+'&pid='+that.xmid+'&mobile='+phoneNum+'&token='+that.JMToken,
+                        url: 'http://api.xinheyz.com/api/do.php?action=getMessage&sid=' + that.xmid + '&phone=' + phoneNum + '&token=' + that.JMToken,
                         timeout: 5000
                     }, (err, res, body) => {
                         //that._log(body)
-                        console.log("正在获取"+body)
+                        console.log("正在获取" + body)
                         resolve(body)
                     })
                 })
             },
-            setTraceList(){
+            setTraceList() {
                 let that = this;
                 for (let i = 0; i < this.tranceNum; i++) {
                     this.traceList.push(traceInit())
 
                 }
             },
-            checkNew(traceIndex){
+            checkNew(traceIndex) {
                 var that = this;
                 var item = this.traceList[traceIndex]
                 return new Promise(resolve => {
@@ -2505,7 +2717,7 @@
                         request.post({
                             proxy: that.traceList[traceIndex].proxy,
                             url: "https://account.dianping.com/account/ajax/mobileVerifySend",
-                            body: 'mobileNo='+item.phoneNum+'&uuid='+item.uuid+'&type=1&countrycode=86',
+                            body: 'mobileNo=' + item.phoneNum + '&uuid=' + item.uuid + '&type=1&countrycode=86',
                             json: true,
                             headers: {
                                 'Host': 'account.dianping.com',
@@ -2521,21 +2733,21 @@
                         }, (err, res, body) => {
                             console.log(body)
                             try {
-                                if(err){
+                                if (err) {
                                     resolve({
                                         err: 1,
                                         res: false
                                     })
                                     return
-                                }else{
+                                } else {
 
-                                    if(body.msg.err){
+                                    if (body.msg.err) {
                                         resolve({
                                             err: 1,
                                             res: false
                                         })
                                         return
-                                    }else{
+                                    } else {
                                         resolve({
                                             err: 0,
                                             res: true
@@ -2546,7 +2758,7 @@
 
 
                                 }
-                            }catch (e) {
+                            } catch (e) {
                                 console.log(e)
                                 resolve({
                                     err: 1,

@@ -1,7 +1,7 @@
 var Yoda = {}
 var window = {
     location: {
-        href: 'https://maccount.dianping.com/login?redir=https%3A%2F%2Fm.dianping.com%2Fnmy%2Fmyinfo'
+        href: 'https://account.dianping.com/account/iframeLogin?callback=EasyLogin_frame_callback0&wide=false&protocol=https:&redir=http%3A%2F%2Fwww.dianping.com'
     }
 
 }
@@ -10013,7 +10013,7 @@ function getBehavior(n, seedConfig, data){
 
 function get_token(n, seedConfig){
     seed.config = seedConfig;
-    n="1d40bd980108483b891c9775ff5b1f2e";
+    n="47a34605c51246e69a41c20b233bf31a";
     var temp = fuckSlider._token.reload(href);
     var con = fuckSlider.behavior(temp, n);
     console.log(con)
