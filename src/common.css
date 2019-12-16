@@ -1,16 +1,15 @@
-body{/*
+body {
+    /*
     font-size: 70%;*/
 }
 
-ul{
-   list-style: none;
+ul {
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-
-
-.btnPrimary{
+.btnPrimary {
     padding: 3px 20px 3px 20px;
     line-height: 30px;
     /* width: 80px; */
@@ -23,12 +22,13 @@ ul{
     margin: 5px;
     box-shadow: 1px 2px 10px #ccc;
 }
-.btnPrimary:hover{
+
+.btnPrimary:hover {
     cursor: pointer;
     background: #535353;
 }
 
-.errShow{
+.errShow {
     width: 100%;
     height: 30px;
     position: fixed;
@@ -39,11 +39,11 @@ ul{
     text-align: center;
 }
 
-.main{
+.main {
     margin-top: 40px;
 }
 
-.input{
+.input {
     display: block;
     margin: 5px;
     box-shadow: 1px 2px 6px #ccc;
@@ -51,29 +51,26 @@ ul{
     height: 30px;
 }
 
-textarea{
+textarea {
     width: 200px;
     height: 100px;
 }
 
-.infoBox{
+.infoBox {
     position: relative;
     border-radius: 3px;
     box-shadow: 1px 1px 10px #ccc;
     margin: 10px;
     padding: 20px 10px 10px 10px;
     min-width: 300px;
-    
 }
 
-
-.infoBox .infoSpan{
+.infoBox .infoSpan {
     width: 100%;
     overflow: hidden;
-    
 }
 
-.infoBox .boxTitle{
+.infoBox .boxTitle {
     position: absolute;
     top: -10px;
     background: #fff;
@@ -81,29 +78,27 @@ textarea{
     border-radius: 6px;
 }
 
-input{
+input {
     margin: 5px;
 }
 
-.cleanFloat{
+.cleanFloat {
     clear: both;
 }
-.infosBox{
+
+.infosBox {
     min-width: 800px;
 }
 
-.infosBox .infoBox{
-
+.infosBox .infoBox {
     float: left;
-    width: 200px;
-    height: 250px;
+    min-width: 200px;
 }
 
-
-.table tbody tr td{
+.table tbody tr td {
     padding: 3px;
 }
 
-.btn{
+.btn {
     padding: 0px 20px;
 }

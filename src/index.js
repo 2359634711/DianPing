@@ -9,9 +9,15 @@ const ipcMain = require('electron').ipcMain;
 // 垃圾回收的时候，window对象将会自动的关闭
 let win
 
-function createWindow () {
+function createWindow() {
     // 创建浏览器窗口。
-    win = new BrowserWindow({ width: 800, height: 600 })
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
 
     // 然后加载应用的 index.html。
     win.loadFile('index.html')
@@ -50,10 +56,10 @@ app.on('activate', () => {
     }
 })
 
-ipcMain.on("massageBox", function(event, arg){
+ipcMain.on("massageBox", function (event, arg) {
     console.log(arg)
     //dialog.showMessageBox(null, arg);
-    event.returnValue = dialog.showMessageBox(null, arg )
+    event.returnValue = dialog.showMessageBox(null, arg)
 })
 
 // 在这个文件中，你可以续写应用剩下主进程代码。
